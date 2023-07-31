@@ -3,11 +3,13 @@
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Superdocs.AI | Document Understanding</title>
 
     <!-- Favicon for desktop browsers -->
@@ -19,23 +21,39 @@
 
 <body class="overflow-x-hidden m-0 bg-cover custom-body">
     <nav class="sticky top-0 z-50 w-3/4 mx-auto my-4 p-3 rounded-full bg-black custom-nav">
-        <button class="cursor-pointer" onclick="goToHome()"><div class="text-white">Superdocs.AI</div></button>
-        <script>
-            function goToHome() {
-              window.location.href = '/';
-            }
-        </script>
-        <div class="flex gap-6 mr-4">
+        <button class="cursor-pointer text-lg md:text-2xl" onclick="goToHome()">
+            <div class="text-white">Superdocs.AI</div>
+        </button>
+        <div class="hidden md:flex gap-6 mr-4">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#demo">Demo</a>
+            <a href="#">Request Full Access</a>
+        </div>
+        <button class="md:hidden" id="hamburger">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        <div class="hidden" id="dropdown">
+            <button id="close">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
             <a href="#services">Services</a>
             <a href="#about">About</a>
             <a href="#demo">Demo</a>
             <a href="#">Request Full Access</a>
         </div>
     </nav>
-    <section class="h-screen flex items-center justify-center flex-col"> <!-- Add flex-col here -->
+    <section class="h-screen flex items-center justify-center flex-col">
         <h1 class="text-6xl uppercase tracking-wide text-shadow custom-h1">Welcome to Superdocs.AI</h1>
-        <a href="#" class="cta-button cursor-pointer">Request Full Access</a> <!-- Moved the button here -->
-    </section>    
+        <a href="#" class="cta-button cursor-pointer">Request Full Access</a>
+    </section>
 
 
     <section class="py-20 text-white" id="services">
@@ -45,22 +63,25 @@
                 <div class="service-card">
                     <i class="fas fa-file-alt fa-3x"></i>
                     <h3 class="text-2xl font-bold mt-4">Data Extraction</h3>
-                    <p class="mt-2">Advanced algorithms help extract valuable information from complex structured and unstructured data.</p>
+                    <p class="mt-2">Advanced algorithms help extract valuable information from complex structured and
+                        unstructured data.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-layer-group fa-3x"></i>
                     <h3 class="text-2xl font-bold mt-4">Document Processing Pipelines</h3>
-                    <p class="mt-2">Solutions to build comprehensive document processing pipelines, enabling seamless data flow.</p>
+                    <p class="mt-2">Solutions to build comprehensive document processing pipelines, enabling seamless
+                        data flow.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-cogs fa-3x"></i>
                     <h3 class="text-2xl font-bold mt-4">Automated Data Understanding</h3>
-                    <p class="mt-2">Leverage AI-powered solutions for automatic understanding and interpretation of your documents.</p>
+                    <p class="mt-2">Leverage AI-powered solutions for automatic understanding and interpretation of your
+                        documents.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
 
     <section class="pb-20 pt-60 text-white use-cases-section" id="about">
         <div class="container mx-auto px-4 text-center">
@@ -69,42 +90,51 @@
                 <div class="timeline-item" id="case1">
                     <h3 class="text-xl font-bold cursor-pointer">Step 1: Upload Document</h3>
                     <div class="case-card hidden">
-                        <div class="case-content">   <!-- New div -->
-                            <div class="icon-container">  <!-- New div -->
+                        <div class="case-content">
+                            <!-- New div -->
+                            <div class="icon-container">
+                                <!-- New div -->
                                 <img src="/static/img/pdf.png">
                             </div>
-                            <div class="text-container">  <!-- New div -->
+                            <div class="text-container">
+                                <!-- New div -->
                                 <p class="case-details">Upload your document to the platform or send an API request</p>
                             </div>
                         </div>
                     </div>
-                </div>                               
+                </div>
                 <div class="timeline-item" id="case2">
                     <h3 class="text-xl font-bold cursor-pointer">Step 2: Set Fields</h3>
                     <div class="case-card hidden">
-                        <div class="case-content">   <!-- New div -->
-                            <div class="icon-container">  <!-- New div -->
+                        <div class="case-content">
+                            <!-- New div -->
+                            <div class="icon-container">
+                                <!-- New div -->
                                 <img src="/static/img/doc.png">
                             </div>
-                            <div class="text-container">  <!-- New div -->
+                            <div class="text-container">
+                                <!-- New div -->
                                 <p class="case-details">Set your fields and specify the context for the LLM</p>
                             </div>
                         </div>
                     </div>
-                </div>              
+                </div>
                 <div class="timeline-item" id="case3">
                     <h3 class="text-xl font-bold cursor-pointer">Step 3: Examine Results</h3>
                     <div class="case-card hidden">
-                        <div class="case-content">   <!-- New div -->
-                            <div class="icon-container">  <!-- New div -->
+                        <div class="case-content">
+                            <!-- New div -->
+                            <div class="icon-container">
+                                <!-- New div -->
                                 <img src="/static/img/examination.png">
                             </div>
-                            <div class="text-container">  <!-- New div -->
+                            <div class="text-container">
+                                <!-- New div -->
                                 <p class="case-details">Examine your output and process it accordinly</p>
                             </div>
                         </div>
                     </div>
-                </div>                                  
+                </div>
             </div>
             <div class="timeline-indicator"></div>
         </div>
@@ -142,7 +172,7 @@
                 <p class="description">Extract domain-specific context from any document</p>
             </div>
         </div>
-    </section>         
+    </section>
 
     <section class="demo-section pb-60 pt-40" id="demo">
         <h2 class="text-4xl font-bold text-center custom-h2">Interactive Demo</h2>
@@ -158,10 +188,12 @@
                 <p>Results displayed here</p>
             </div>
         </div>
-    </section>       
+    </section>
 
     <footer class="footer">
-        <a class="cursor-pointer" href="/"><div class="footer-logo">Superdocs.AI</div></a>
+        <a class="cursor-pointer" href="/">
+            <div class="footer-logo">Superdocs.AI</div>
+        </a>
         <nav class="footer-links">
             <a href="#" class="footer-link">Home</a>
             <a href="#" class="footer-link">Features</a>
@@ -173,10 +205,24 @@
             <p>contact@yourcompany.com</p>
             <p>(123) 456-7890</p>
         </div>
-    </footer>    
-     
+    </footer>
+
 
     <script src="/static/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('hamburger').addEventListener('click', function() {
+                document.getElementById('dropdown').classList.remove('hidden');
+                document.getElementById('dropdown').classList.add('flex');
+            });
+            document.getElementById('close').addEventListener('click', function() {
+                document.getElementById('dropdown').classList.add('hidden');
+                document.getElementById('dropdown').classList.remove('flex');
+            });
+        });
+
+    </script>
 </body>
 
 </html>

@@ -25,9 +25,30 @@
 .custom-h1 {
     font-size: 3em;
     letter-spacing: 0.3em;
-    margin-bottom: 20px;
+    margin-bottom: 2em;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
     animation: textfade 5s infinite;
+}
+
+@media (max-width: 1200px) {
+    .custom-h1 {
+        font-size: 2.5em;
+    }
+}
+@media (max-width: 992px) {
+    .custom-h1 {
+        font-size: 2em;
+    }
+}
+@media (max-width: 768px) {
+    .custom-h1 {
+        font-size: 1.5em;
+    }
+}
+@media (max-width: 576px) {
+    .custom-h1 {
+        font-size: 1em;
+    }
 }
 
 @keyframes textfade {
@@ -66,7 +87,7 @@
 
 .custom-nav div:first-child {
     color: #fff;
-    font-size: 1.6em;
+    font-size: 1em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the logo */
 }
 
@@ -106,6 +127,33 @@
     box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
 }
 
+#dropdown {
+    flex-direction: column;
+    gap: 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    padding: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+#dropdown a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#dropdown button {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+
 .service-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -141,7 +189,13 @@
 
 .use-cases-section {
     position: relative;
-    padding-bottom: 400px; /* Adjust as needed */
+    padding-bottom: 20px; /* Adjust to desired mobile spacing */
+}
+
+@media only screen and (min-width: 768px) {
+    .use-cases-section {
+        padding-bottom: 400px; /* Maintain the original 400px padding for larger screens */
+    }
 }
 
 .timeline {
@@ -162,8 +216,9 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
     opacity: 0.6;
     filter: blur(2px);
+    z-index: 1;
+    height: auto;
 }
-
 .timeline-item:hover {
     opacity: 1;
     filter: none;
@@ -189,7 +244,7 @@
 }
 
 .case-card {
-    position: absolute;
+    position: relative;
     top: 100%;
     left: 50%;
     transform: translate(-50%, 20px);
@@ -199,12 +254,59 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
     text-align: left;
     width: 570px; /* Increase the card size */
-    padding: 40px; /* More space inside the card */
+    padding: 2em; /* More space inside the card */
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
     display: flex;
     flex-direction: column;
     align-items: flex-start; /* Align items to the start instead of center */
     justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .case-card {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 20px);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .timeline {
+        flex-direction: column;
+        align-items: center;
+    }
+    .timeline-item {
+        width: 100%;
+    }
+    .case-card {
+        top: auto;
+        bottom: 100%;
+        left: 0;
+        width: 100%;
+        transform: translate(0, 20px);
+    }
+    .case-card.hidden {
+        transform: translate(0, 30px);
+    }
+    .case-content {
+        flex-direction: column;
+    }
+    .icon-container {
+        border-right: none; 
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .case-card {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        transform: none;
+    }
 }
 
 .case-card:hover {
@@ -215,6 +317,7 @@
     opacity: 0;
     transform: translate(-50%, 30px); /* Move it further down when hidden */
     pointer-events: none;
+    display: none;
 }
 
 .case-card .fas {
@@ -262,6 +365,14 @@
     justify-items: center;
     margin: 40px auto;
     max-width: 800px;
+}
+
+/* CSS for Mobile and smaller tablets */
+@media (max-width: 767px) {
+    .document-understanding-use-case-section {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 40px 20px;
+    }
 }
 
 .document-understanding-case-card {
@@ -342,6 +453,14 @@
     margin-top: 30px; /* Push the card below the title and subtitle */
 }
 
+/* CSS for Mobile and smaller tablets */
+@media (max-width: 767px) {
+    .interactive-demo-card {
+        grid-template-columns: 1fr;
+        height: auto; /* Adjust height to fit the content */
+    }
+}
+
 .interactive-demo-card:hover {
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
 }
@@ -398,6 +517,33 @@
     color: #fff;
     border-top: 1px solid rgba(255, 255, 255, 0.2);  /* subtle border for division */
     box-shadow: 0 -10px 30px rgba(0,0,0,0.2);  /* shadow for depth */
+}
+
+/* CSS for Mobile and smaller tablets */
+@media (max-width: 767px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .footer-link {
+        margin: 5px 0; /* reduced margin for less space between links */
+    }
+
+    .footer-contact {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* centers the content */
+        margin-top: 20px;
+    }
 }
 
 .footer-logo {
