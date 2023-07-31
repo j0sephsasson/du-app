@@ -122,17 +122,6 @@
     counter-reset: item;
 }
 
-/* .timeline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 2px;
-    margin-left: -1px;
-    background: rgba(255, 255, 255, 0.2);
-} */
-
 .timeline-item {
     counter-increment: item;
     padding: 20px;
@@ -142,18 +131,6 @@
     opacity: 0.6;
     filter: blur(2px);
 }
-
-/* .timeline-item:before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-} */
 
 .timeline-item.active {
     opacity: 1;
@@ -184,12 +161,12 @@
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
     text-align: left;
-    width: 300px; /* Increase the card size */
+    width: 500px; /* Increase the card size */
     padding: 40px; /* More space inside the card */
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start; /* Align items to the start instead of center */
     justify-content: center;
 }
 
@@ -204,13 +181,14 @@
 }
 
 .case-card .fas {
-    font-size: 2.5em; /* Larger icon */
-    margin-bottom: 20px;
+    font-size: 5em; /* Larger icon */
+    margin-bottom: 0; /* No need for bottom margin anymore */
+
 }
 
 .case-card .case-details {
-    border-top: 1px solid #fff; /* Add a divider between the icon and text */
-    padding-top: 20px; /* Add some space above the text */
+    border-top: none; /* Remove the top border */
+    padding-top: 0; /* Remove the top padding */
     font-size: 1.4em; /* Larger text for more impact */
     text-align: center; /* Centered text for more aesthetic appeal */
 }
@@ -218,8 +196,25 @@
 .case-card .fas, .case-card img {
     display: block; /* Allow for margin auto */
     margin: 0 auto; /* Center the icon/image */
-    font-size: 3em; /* Make the icon larger */
+    font-size: 10em; /* Make the icon larger */
     max-width: 100%; /* Make sure the image doesn't overflow the card */
     height: auto; /* Maintain the image's aspect ratio */
     margin-bottom: 30px; /* Space between the icon/image and the text */
+}
+.case-content {
+    display: flex;
+    align-items: center; /* Vertically align items in the middle */
+    gap: 20px; /* Add some space between the icon and text */
+}
+
+.icon-container {
+    border-right: 1px solid #fff; /* Add a divider on the right of the icon */
+    padding-right: 20px; /* Add some space between the divider and the icon */
+    flex: 1; /* Take up equal space as text-container */
+    display: flex;
+    justify-content: center; /* Center the icon */
+}
+
+.text-container {
+    flex: 1; /* Take up equal space as icon-container */
 }
