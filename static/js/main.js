@@ -3,11 +3,17 @@ const timelineIndicator = document.querySelector('.timeline-indicator');
 
 timelineItems.forEach((item, index) => {
     item.addEventListener('click', () => {
-        // Remove active class from all items
-        timelineItems.forEach(item => item.classList.remove('active'));
+        // Remove active class from all items and hide all case cards
+        timelineItems.forEach(item => {
+            item.classList.remove('active');
+            const caseCard = item.querySelector('.case-card');
+            caseCard.classList.add('hidden');
+        });
 
-        // Add active class to the clicked item
+        // Add active class to the clicked item and show the case card
         item.classList.add('active');
+        const caseCard = item.querySelector('.case-card');
+        caseCard.classList.remove('hidden');
 
         // Update the timeline indicator width
         const newWidth = ((index + 1) / timelineItems.length) * 100;
