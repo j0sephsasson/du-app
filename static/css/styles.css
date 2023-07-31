@@ -255,20 +255,28 @@
 }
 
 .document-understanding-case-card .fa {
-    font-size: 2.8em;
-    margin-bottom: 20px;
-    transition: text-shadow 0.5s ease; /* Add transition for the text-shadow */
+    font-size: 2.5em;
+    margin-right: 15px; /* Add some space between icon and the title */
+    transition: text-shadow 0.5s ease; 
 }
 
 .document-understanding-case-card:hover .fa {
-    text-shadow: 0 0 20px #fff; /* Add glow to the icon on hover */
+    text-shadow: 0 0 20px #fff; 
 }
 
-.document-understanding-case-card p {
-    font-size: 1.3em;
-    transition: text-shadow 0.5s ease; /* Add transition for the text-shadow */
+.document-understanding-case-card .title {
+    font-size: 1.3em; /* Increase the size of title */
+    font-weight: bold; /* Make title bold */
+    margin-bottom: 10px; /* Add some space between title and the description */
+    display: flex; /* Align icon and the title on the same line */
+    align-items: center; /* Center icon and the title vertically */
 }
 
-.document-understanding-case-card:hover p {
-    text-shadow: 0 0 20px #fff; /* Add glow to the text on hover */
+.document-understanding-case-card .description {
+    font-size: 1.1em;
+    transition: text-shadow 0.5s ease; 
+}
+
+.document-understanding-case-card:hover .description {
+    text-shadow: 0 0 20px #fff;
 }
