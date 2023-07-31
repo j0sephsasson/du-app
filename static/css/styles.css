@@ -194,7 +194,7 @@
 .case-card .case-details {
     border-top: none; /* Remove the top border */
     padding-top: 0; /* Remove the top padding */
-    font-size: 1em; /* Larger text for more impact */
+    font-size: 1.5em; /* Larger text for more impact */
     text-align: center; /* Centered text for more aesthetic appeal */
 }
 
