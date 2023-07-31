@@ -25,6 +25,7 @@
 .custom-h1 {
     font-size: 3em;
     letter-spacing: 0.3em;
+    margin-bottom: 20px;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
     animation: textfade 5s infinite;
 }
@@ -63,15 +64,46 @@
     box-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
-.custom-nav a {
+.custom-nav div:first-child {
     color: #fff;
+    font-size: 1.6em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the logo */
+}
+
+.custom-nav a {
+    color: rgba(255, 255, 255, 0.6);
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
+    text-transform: uppercase; /* uppercase text for a sleek look */
+    letter-spacing: 1px; /* letter spacing for a sharp look */
     transition: color 0.3s ease;
+    align-self: center; /* Vertical centering */
 }
 
 .custom-nav a:hover {
-    color: #ddd;
+    color: #fff;
+}
+
+/* CTA button styling for the Request Access link in the nav */
+.custom-nav a:last-child {
+    display: inline-block;
+    padding: 8px 16px; /* Reduced padding for a smaller button */
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.custom-nav a:last-child:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
+}
+
+.custom-nav a:last-child:active {
+    transform: translateY(1px);
+    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
 }
 
 .service-card {
@@ -279,4 +311,172 @@
 
 .document-understanding-case-card:hover .description {
     text-shadow: 0 0 20px #fff;
+}
+
+.demo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.interactive-demo-card {
+    position: relative; 
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    width: 75vw; 
+    height: 80vh;
+    max-width: 1200px;
+    padding: 40px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    justify-items: center;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.8));
+    margin-top: 30px; /* Push the card below the title and subtitle */
+}
+
+.interactive-demo-card:hover {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+.demo-upload, .demo-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.demo-upload {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.demo-upload p, .demo-result p {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.demo-upload:hover {
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+.demo-result {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.demo-result:hover {
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+.demo-subtitle {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px; /* Spacing for the button */
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);  /* subtle border for division */
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.2);  /* shadow for depth */
+}
+
+.footer-logo {
+    font-size: 2.2em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the logo */
+    transition: all 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.1); /* subtle scaling effect on hover */
+}
+
+.footer-links {
+    display: flex;
+    gap: 60px;
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase; /* uppercase text for a sleek look */
+    letter-spacing: 1px; /* letter spacing for a sharp look */
+}
+
+.footer-link:hover {
+    color: #fff;
+    transform: translateY(-3px); /* subtle lift on hover */
+}
+
+.footer-contact {
+    text-align: right;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px; /* Reduced padding to make the button smaller */
+    font-size: 1.2em; /* Reduced font size to match button size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
+}
+
+.cta-button:active {
+    transform: translateY(1px);
+    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
+}
+
+/* CTA button styling for the Request Full Access link */
+.full-access {
+    display: inline-block;
+    padding: 8px 16px; /* Smaller button */
+    font-size: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin: 0 auto;
+    display: table;
+}
+
+.full-access:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
 }

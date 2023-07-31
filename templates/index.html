@@ -19,19 +19,21 @@
 
 <body class="overflow-x-hidden m-0 bg-cover custom-body">
     <nav class="sticky top-0 z-50 w-3/4 mx-auto my-4 p-3 rounded-full bg-black custom-nav">
-        <div class="text-white">Superdocs AI</div>
+        <div class="text-white">Superdocs.AI</div>
         <div class="flex gap-6 mr-4">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#demo">Demo</a>
+            <a href="#">Request Full Access</a>
         </div>
     </nav>
-    <section class="h-screen flex items-center justify-center">
+    <section class="h-screen flex items-center justify-center flex-col"> <!-- Add flex-col here -->
         <h1 class="text-6xl uppercase tracking-wide text-shadow custom-h1">Welcome to Superdocs AI</h1>
-    </section>
+        <a href="#" class="cta-button cursor-pointer">Request Full Access</a> <!-- Moved the button here -->
+    </section>    
 
-    <section class="py-20 text-white">
+
+    <section class="py-20 text-white" id="services">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-center custom-h2">Document Understanding Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
@@ -55,7 +57,7 @@
     </section>
     
 
-    <section class="pb-20 pt-60 text-white use-cases-section" id="use-cases">
+    <section class="pb-20 pt-60 text-white use-cases-section" id="about">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-center custom-h2">How it Works</h2>
             <div class="timeline mt-10">
@@ -103,8 +105,8 @@
         </div>
     </section>
 
-    <section class="pb-20 pt-40">
-        <h1 class="text-4xl font-bold text-center custom-h2">Use Cases</h1>
+    <section class="pb-20 pt-60">
+        <h2 class="text-4xl font-bold text-center custom-h2">Use Cases</h2>
         <div class="document-understanding-use-case-section">
             <div class="document-understanding-case-card">
                 <div class="title">
@@ -136,6 +138,38 @@
             </div>
         </div>
     </section>         
+
+    <section class="demo-section pb-60 pt-40" id="demo">
+        <h2 class="text-4xl font-bold text-center custom-h2">Interactive Demo</h2>
+        <h2 class="demo-subtitle">Try it out now for free and experience the ease of use</h2>
+        <a href="#" class="cta-button full-access">Request Full Access</a>
+        <div class="interactive-demo-card">
+            <div class="demo-upload">
+                <i class="fa fa-upload" aria-hidden="true"></i>
+                <p>Upload your file here</p>
+            </div>
+            <div class="demo-result">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <p>Results displayed here</p>
+            </div>
+        </div>
+    </section>       
+
+    <footer class="footer">
+        <a class="cursor-pointer" href="/"><div class="footer-logo">Superdocs.AI</div></a>
+        <nav class="footer-links">
+            <a href="#" class="footer-link">Home</a>
+            <a href="#" class="footer-link">Features</a>
+            <a href="#" class="footer-link">Pricing</a>
+            <a href="#" class="footer-link">Contact</a>
+        </nav>
+        <div class="footer-contact">
+            <p>1234 Street Name, City, State</p>
+            <p>contact@yourcompany.com</p>
+            <p>(123) 456-7890</p>
+        </div>
+    </footer>    
+     
 
     <script src="/static/js/main.js"></script>
 </body>
