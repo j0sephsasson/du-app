@@ -1,7 +1,65 @@
+/*--------------------------------------------------------------
+HERO SECTION // GENERAL
+--------------------------------------------------------------*/
+/* CTA button */
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
+}
+
+.cta-button:active {
+    transform: translateY(1px);
+    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
+}
+
+.full-access {
+    display: inline-block;
+    padding: 8px 16px; /* Smaller button */
+    font-size: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin: 0 auto;
+    display: table;
+}
+
+.full-access:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+}
+
+/* background for hero */
 .custom-body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     background: radial-gradient(circle at center, #121212, #000);
+}
+
+.custom-h2 {
+    font-size: 2em;
+    letter-spacing: 0.3em;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 .custom-body::before {
@@ -17,43 +75,12 @@
     animation: bgfade 20s infinite;
 }
 
-@keyframes bgfade {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
 .custom-h1 {
     font-size: 3em;
     letter-spacing: 0.3em;
     margin-bottom: 2em;
     text-shadow: 0 0 10px rgba(255,255,255,0.5);
     animation: textfade 5s infinite;
-}
-
-@media (max-width: 1200px) {
-    .custom-h1 {
-        font-size: 2.5em;
-    }
-}
-@media (max-width: 992px) {
-    .custom-h1 {
-        font-size: 2em;
-    }
-}
-@media (max-width: 768px) {
-    .custom-h1 {
-        font-size: 1.5em;
-    }
-}
-@media (max-width: 576px) {
-    .custom-h1 {
-        font-size: 1em;
-    }
-}
-
-@keyframes textfade {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
 }
 
 .custom-h1::before, .custom-h1::after {
@@ -68,15 +95,53 @@
     animation: lightscan 10s infinite;
 }
 
+.custom-h1::before {
+    filter: blur(10px);
+}
+
+/* media queries + animations */
+@media (max-width: 1200px) {
+    .custom-h1 {
+        font-size: 2.5em;
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-h1 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-h1 {
+        font-size: 1em;
+    }
+}
+
 @keyframes lightscan {
     0%, 100% { transform: translateX(-100%); }
     50% { transform: translateX(100%); }
 }
 
-.custom-h1::before {
-    filter: blur(10px);
+@keyframes textfade {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
 }
 
+@keyframes bgfade {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/*--------------------------------------------------------------
+# NAV
+--------------------------------------------------------------*/
 .custom-nav {
     display: flex;
     justify-content: space-between;
@@ -88,27 +153,26 @@
 .custom-nav div:first-child {
     color: #fff;
     font-size: 1em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the logo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .custom-nav a {
     color: rgba(255, 255, 255, 0.6);
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
-    text-transform: uppercase; /* uppercase text for a sleek look */
-    letter-spacing: 1px; /* letter spacing for a sharp look */
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
     transition: color 0.3s ease;
-    align-self: center; /* Vertical centering */
+    align-self: center; 
 }
 
 .custom-nav a:hover {
     color: #fff;
 }
 
-/* CTA button styling for the Request Access link in the nav */
 .custom-nav a:last-child {
     display: inline-block;
-    padding: 8px 16px; /* Reduced padding for a smaller button */
+    padding: 8px 16px;
     background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
     border: none;
     border-radius: 50px;
@@ -154,6 +218,9 @@
     top: 1em;
 }
 
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
 .service-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -181,21 +248,12 @@
     color: #ddd;
 }
 
-.custom-h2 {
-    font-size: 2em;
-    letter-spacing: 0.3em;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
+/*--------------------------------------------------------------
+# HOW IT WORKS // TIMELINE
+--------------------------------------------------------------*/
 .use-cases-section {
     position: relative;
-    padding-bottom: 20px; /* Adjust to desired mobile spacing */
-}
-
-@media only screen and (min-width: 768px) {
-    .use-cases-section {
-        padding-bottom: 400px; /* Maintain the original 400px padding for larger screens */
-    }
+    padding-bottom: 20px;
 }
 
 .timeline {
@@ -219,6 +277,7 @@
     z-index: 1;
     height: auto;
 }
+
 .timeline-item:hover {
     opacity: 1;
     filter: none;
@@ -253,13 +312,69 @@
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
     text-align: left;
-    width: 570px; /* Increase the card size */
-    padding: 2em; /* More space inside the card */
+    width: 570px;
+    padding: 2em;
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align items to the start instead of center */
+    align-items: flex-start;
     justify-content: center;
+}
+
+.case-card:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* Intensify white glow on hover */
+}
+
+.case-card.hidden {
+    opacity: 0;
+    transform: translate(-50%, 30px); /* Move it further down when hidden */
+    pointer-events: none;
+    display: none;
+}
+
+.case-card .fas {
+    font-size: 5em;
+    margin-bottom: 0;
+
+}
+
+.case-card .case-details {
+    border-top: none;
+    padding-top: 0;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.case-card .fas, .case-card img {
+    display: block;
+    margin: 0 auto;
+    font-size: 14em;
+    max-width: 100%;
+    height: auto;
+}
+.case-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-container {
+    border-right: 1px solid #fff;
+    padding-right: 20px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.text-container {
+    flex: 1;
+}
+
+/* media queries */
+@media only screen and (min-width: 768px) {
+    .use-cases-section {
+        padding-bottom: 400px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -309,55 +424,9 @@
     }
 }
 
-.case-card:hover {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* Intensify white glow on hover */
-}
-
-.case-card.hidden {
-    opacity: 0;
-    transform: translate(-50%, 30px); /* Move it further down when hidden */
-    pointer-events: none;
-    display: none;
-}
-
-.case-card .fas {
-    font-size: 5em; /* Larger icon */
-    margin-bottom: 0; /* No need for bottom margin anymore */
-
-}
-
-.case-card .case-details {
-    border-top: none; /* Remove the top border */
-    padding-top: 0; /* Remove the top padding */
-    font-size: 1.5em; /* Larger text for more impact */
-    text-align: center; /* Centered text for more aesthetic appeal */
-}
-
-.case-card .fas, .case-card img {
-    display: block; /* Allow for margin auto */
-    margin: 0 auto; /* Center the icon/image */
-    font-size: 14em; /* Make the icon larger */
-    max-width: 100%; /* Make sure the image doesn't overflow the card */
-    height: auto; /* Maintain the image's aspect ratio */
-}
-.case-content {
-    display: flex;
-    align-items: center; /* Vertically align items in the middle */
-    gap: 20px; /* Add some space between the icon and text */
-}
-
-.icon-container {
-    border-right: 1px solid #fff; /* Add a divider on the right of the icon */
-    padding-right: 20px; /* Add some space between the divider and the icon */
-    flex: 1; /* Take up equal space as text-container */
-    display: flex;
-    justify-content: center; /* Center the icon */
-}
-
-.text-container {
-    flex: 1; /* Take up equal space as icon-container */
-}
-
+/*--------------------------------------------------------------
+# USE-CASES
+--------------------------------------------------------------*/
 .document-understanding-use-case-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -365,14 +434,6 @@
     justify-items: center;
     margin: 40px auto;
     max-width: 800px;
-}
-
-/* CSS for Mobile and smaller tablets */
-@media (max-width: 767px) {
-    .document-understanding-use-case-section {
-        grid-template-columns: repeat(1, 1fr);
-        margin: 40px 20px;
-    }
 }
 
 .document-understanding-case-card {
@@ -399,7 +460,7 @@
 
 .document-understanding-case-card .fa {
     font-size: 2.5em;
-    margin-right: 15px; /* Add some space between icon and the title */
+    margin-right: 15px;
     transition: text-shadow 0.5s ease; 
 }
 
@@ -408,11 +469,11 @@
 }
 
 .document-understanding-case-card .title {
-    font-size: 1.3em; /* Increase the size of title */
-    font-weight: bold; /* Make title bold */
-    margin-bottom: 10px; /* Add some space between title and the description */
-    display: flex; /* Align icon and the title on the same line */
-    align-items: center; /* Center icon and the title vertically */
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
 .document-understanding-case-card .description {
@@ -424,6 +485,17 @@
     text-shadow: 0 0 20px #fff;
 }
 
+/* media queries */
+@media (max-width: 767px) {
+    .document-understanding-use-case-section {
+        grid-template-columns: repeat(1, 1fr);
+        margin: 40px 20px;
+    }
+}
+
+/*--------------------------------------------------------------
+# DEMO
+--------------------------------------------------------------*/
 .demo-section {
     display: flex;
     flex-direction: column;
@@ -451,14 +523,6 @@
     justify-items: center;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.8));
     margin-top: 30px; /* Push the card below the title and subtitle */
-}
-
-/* CSS for Mobile and smaller tablets */
-@media (max-width: 767px) {
-    .interactive-demo-card {
-        grid-template-columns: 1fr;
-        height: auto; /* Adjust height to fit the content */
-    }
 }
 
 .interactive-demo-card:hover {
@@ -506,9 +570,40 @@
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 30px; /* Spacing for the button */
+    margin-bottom: 30px;
 }
 
+#submitBtn {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+
+#submitBtn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* media queries */
+@media (max-width: 767px) {
+    .interactive-demo-card {
+        grid-template-columns: 1fr;
+        height: auto; /* Adjust height to fit the content */
+    }
+}
+
+/*--------------------------------------------------------------
+# FOOTER
+--------------------------------------------------------------*/
 .footer {
     display: flex;
     justify-content: space-between;
@@ -517,33 +612,6 @@
     color: #fff;
     border-top: 1px solid rgba(255, 255, 255, 0.2);  /* subtle border for division */
     box-shadow: 0 -10px 30px rgba(0,0,0,0.2);  /* shadow for depth */
-}
-
-/* CSS for Mobile and smaller tablets */
-@media (max-width: 767px) {
-    .footer {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-    }
-
-    .footer-link {
-        margin: 5px 0; /* reduced margin for less space between links */
-    }
-
-    .footer-contact {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;  /* centers the content */
-        margin-top: 20px;
-    }
 }
 
 .footer-logo {
@@ -579,50 +647,29 @@
     text-align: right;
 }
 
-.cta-button {
-    display: inline-block;
-    padding: 10px 20px; /* Reduced padding to make the button smaller */
-    font-size: 1.2em; /* Reduced font size to match button size */
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #fff;
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-    border: none;
-    border-radius: 50px;
-    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
+/* media queries */
+@media (max-width: 767px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
 
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
-}
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
 
-.cta-button:active {
-    transform: translateY(1px);
-    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
-}
+    .footer-link {
+        margin: 5px 0; /* reduced margin for less space between links */
+    }
 
-/* CTA button styling for the Request Full Access link */
-.full-access {
-    display: inline-block;
-    padding: 8px 16px; /* Smaller button */
-    font-size: 1em;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #fff;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.7);
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    margin: 0 auto;
-    display: table;
-}
-
-.full-access:hover {
-    background: rgba(255, 255, 255, 1);
-    color: #000;
+    .footer-contact {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* centers the content */
+        margin-top: 20px;
+    }
 }

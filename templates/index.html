@@ -179,14 +179,16 @@
         <h2 class="demo-subtitle">Try it out now for free and experience the ease of use</h2>
         <a href="#" class="cta-button full-access">Request Full Access</a>
         <div class="interactive-demo-card">
-            <div class="demo-upload">
+            <div class="demo-upload" id="uploadContainer">
+                <input type="file" id="fileUpload" style="display:none;" />
                 <i class="fa fa-upload" aria-hidden="true"></i>
-                <p>Upload your file here</p>
+                <p>Click to upload your file</p>
             </div>
             <div class="demo-result">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 <p>Results displayed here</p>
             </div>
+            <button id="submitBtn" style="display: none;">Submit</button>
         </div>
     </section>
 
@@ -211,17 +213,52 @@
     <script src="/static/js/main.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('hamburger').addEventListener('click', function() {
+        document.getElementById('uploadContainer').addEventListener('click', function () {
+            document.getElementById('fileUpload').click();
+        }, false);
+
+        document.getElementById('fileUpload').addEventListener('change', handleFileSelect, false);
+
+        function handleFileSelect(evt) {
+            var file = evt.target.files[0];
+            var reader = new FileReader();
+
+            if (file.type.match('image.*')) {
+                reader.onload = (function () {
+                    return function (e) {
+                        document.getElementById('uploadContainer').innerHTML = ['<img src="', e.target
+                            .result, '" title="', escape(file.name), '"/>'
+                        ].join('');
+                    };
+                })(file);
+            } else if (file.type.match('application/pdf')) {
+                var fileURL = URL.createObjectURL(file);
+                document.getElementById('uploadContainer').innerHTML = '<iframe src="' + fileURL + '"></iframe>';
+            } else {
+                reader.onload = (function () {
+                    return function (e) {
+                        document.getElementById('uploadContainer').textContent = e.target.result;
+                    };
+                })(file);
+            }
+
+            reader.readAsDataURL(file);
+
+            document.getElementById('submitBtn').style.display = "block";
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('hamburger').addEventListener('click', function () {
                 document.getElementById('dropdown').classList.remove('hidden');
                 document.getElementById('dropdown').classList.add('flex');
             });
-            document.getElementById('close').addEventListener('click', function() {
+            document.getElementById('close').addEventListener('click', function () {
                 document.getElementById('dropdown').classList.add('hidden');
                 document.getElementById('dropdown').classList.remove('flex');
             });
         });
-
     </script>
 </body>
 
