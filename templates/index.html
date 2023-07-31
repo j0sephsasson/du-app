@@ -19,7 +19,12 @@
 
 <body class="overflow-x-hidden m-0 bg-cover custom-body">
     <nav class="sticky top-0 z-50 w-3/4 mx-auto my-4 p-3 rounded-full bg-black custom-nav">
-        <div class="text-white">Superdocs.AI</div>
+        <button class="cursor-pointer" onclick="goToHome()"><div class="text-white">Superdocs.AI</div></button>
+        <script>
+            function goToHome() {
+              window.location.href = '/';
+            }
+        </script>
         <div class="flex gap-6 mr-4">
             <a href="#services">Services</a>
             <a href="#about">About</a>
@@ -28,7 +33,7 @@
         </div>
     </nav>
     <section class="h-screen flex items-center justify-center flex-col"> <!-- Add flex-col here -->
-        <h1 class="text-6xl uppercase tracking-wide text-shadow custom-h1">Welcome to Superdocs AI</h1>
+        <h1 class="text-6xl uppercase tracking-wide text-shadow custom-h1">Welcome to Superdocs.AI</h1>
         <a href="#" class="cta-button cursor-pointer">Request Full Access</a> <!-- Moved the button here -->
     </section>    
 
