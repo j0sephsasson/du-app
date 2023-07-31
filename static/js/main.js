@@ -31,3 +31,6 @@ timelineItems.forEach((item, index) => {
 timelineItems[0].classList.add('active');
 // Show the case card for the first timeline item
 timelineItems[0].querySelector('.case-card').classList.remove('hidden');
+// Set timeline indicator initial width
+const newWidth = ((1) / timelineItems.length) * 100;
+timelineIndicator.style.width = `${newWidth}%`;
