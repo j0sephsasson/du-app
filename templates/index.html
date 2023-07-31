@@ -184,13 +184,26 @@
                 <i class="fa fa-upload" aria-hidden="true"></i>
                 <p>Click to upload your file</p>
             </div>
+            <div class="demo-fields">
+                <div class="demo-fields-inner">
+                    <div class="field-prompt">
+                        <i class="fa fa-wrench field-icon" aria-hidden="true"></i>
+                        <p id="fieldPrompt">Set your extraction fields here</p>
+                    </div>
+                    <p id="extractionFields" style="display:none;">Extraction Fields:</p>
+                    <div id="fieldsContainer"></div>
+                    <div class="inputContainer">
+                        <input type="text" id="fieldInput" placeholder="Enter your fields..." />
+                    </div>
+                </div>
+            </div>
             <div class="demo-result">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 <p>Results displayed here</p>
             </div>
-            <button id="submitBtn" style="display: none;">Submit</button>
         </div>
     </section>
+
 
     <footer class="footer">
         <a class="cursor-pointer" href="/">
@@ -211,55 +224,6 @@
 
 
     <script src="/static/js/main.js"></script>
-
-    <script>
-        document.getElementById('uploadContainer').addEventListener('click', function () {
-            document.getElementById('fileUpload').click();
-        }, false);
-
-        document.getElementById('fileUpload').addEventListener('change', handleFileSelect, false);
-
-        function handleFileSelect(evt) {
-            var file = evt.target.files[0];
-            var reader = new FileReader();
-
-            if (file.type.match('image.*')) {
-                reader.onload = (function () {
-                    return function (e) {
-                        document.getElementById('uploadContainer').innerHTML = ['<img src="', e.target
-                            .result, '" title="', escape(file.name), '"/>'
-                        ].join('');
-                    };
-                })(file);
-            } else if (file.type.match('application/pdf')) {
-                var fileURL = URL.createObjectURL(file);
-                document.getElementById('uploadContainer').innerHTML = '<iframe src="' + fileURL + '"></iframe>';
-            } else {
-                reader.onload = (function () {
-                    return function (e) {
-                        document.getElementById('uploadContainer').textContent = e.target.result;
-                    };
-                })(file);
-            }
-
-            reader.readAsDataURL(file);
-
-            document.getElementById('submitBtn').style.display = "block";
-        }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById('hamburger').addEventListener('click', function () {
-                document.getElementById('dropdown').classList.remove('hidden');
-                document.getElementById('dropdown').classList.add('flex');
-            });
-            document.getElementById('close').addEventListener('click', function () {
-                document.getElementById('dropdown').classList.add('hidden');
-                document.getElementById('dropdown').classList.remove('flex');
-            });
-        });
-    </script>
 </body>
 
 </html>
