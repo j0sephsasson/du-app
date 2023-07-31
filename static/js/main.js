@@ -29,3 +29,5 @@ timelineItems.forEach((item, index) => {
 
 // Set the first timeline item as active by default
 timelineItems[0].classList.add('active');
+// Show the case card for the first timeline item
+timelineItems[0].querySelector('.case-card').classList.remove('hidden');

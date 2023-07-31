@@ -132,6 +132,11 @@
     filter: blur(2px);
 }
 
+.timeline-item:hover {
+    opacity: 1;
+    filter: none;
+}
+
 .timeline-item.active {
     opacity: 1;
     filter: blur(0px);
@@ -161,7 +166,7 @@
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
     text-align: left;
-    width: 500px; /* Increase the card size */
+    width: 570px; /* Increase the card size */
     padding: 40px; /* More space inside the card */
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
     display: flex;
@@ -189,17 +194,16 @@
 .case-card .case-details {
     border-top: none; /* Remove the top border */
     padding-top: 0; /* Remove the top padding */
-    font-size: 1.4em; /* Larger text for more impact */
+    font-size: 1em; /* Larger text for more impact */
     text-align: center; /* Centered text for more aesthetic appeal */
 }
 
 .case-card .fas, .case-card img {
     display: block; /* Allow for margin auto */
     margin: 0 auto; /* Center the icon/image */
-    font-size: 10em; /* Make the icon larger */
+    font-size: 14em; /* Make the icon larger */
     max-width: 100%; /* Make sure the image doesn't overflow the card */
     height: auto; /* Maintain the image's aspect ratio */
-    margin-bottom: 30px; /* Space between the icon/image and the text */
 }
 .case-content {
     display: flex;
