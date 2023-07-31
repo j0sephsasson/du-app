@@ -37,67 +37,114 @@ const newWidth = ((1) / timelineItems.length) * 100;
 timelineIndicator.style.width = `${newWidth}%`;
 
 // DEMO SECTION
-document.getElementById('uploadContainer').addEventListener('click', function () {
-    document.getElementById('fileUpload').click();
-}, false);
+var formDataState = {
+    file: null,
+    fields: []
+};
 
-document.getElementById('fileUpload').addEventListener('change', handleFileSelect, false);
+document.getElementById('uploadContainer').addEventListener('click', function (e) {
+    e.stopPropagation();
+    document.getElementById('fileUpload').click();
+});
+
+document.getElementById('fileUpload').addEventListener('click', function (e) {
+    e.stopPropagation();
+});
+
+$('#fileUpload').on('change', handleFileSelect);
+
+$('#submitButton').on('click', function () {
+    if(formDataState.file && formDataState.fields.length > 0) {
+        // Add class to make the containers collapse
+        $("#uploadContainer, .demo-fields").addClass("container-collapsed");
+        $("#loading").show();
+
+        var form_data = new FormData();
+        form_data.append('file', formDataState.file);
+        form_data.append('fields', JSON.stringify(formDataState.fields));
+
+        $.ajax({
+            url: '/upload',
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function (response) {
+                $("#loading").hide();
+                // Remove the collapse class and add the expand class to show the results container
+                $("#resultContainer").removeClass("container-collapsed").addClass("results-expanded");
+                $("#resultText").text(response.message);
+            },
+            error: function (response) {
+                $("#loading").hide();
+                // Remove the collapse class to show the containers again
+                $("#uploadContainer, .demo-fields").removeClass("container-collapsed");
+                alert('Error occurred during file upload!');
+            }
+        });
+    } else {
+        alert("Please upload a file and add extraction fields before submitting");
+    }
+});
 
 function handleFileSelect(evt) {
     var file = evt.target.files[0];
     var reader = new FileReader();
 
-    if (file.type.match('image.*')) {
-        reader.onload = (function () {
-            return function (e) {
-                document.getElementById('uploadContainer').innerHTML = ['<img src="', e.target
-                    .result, '" title="', escape(file.name), '"/>'
-                ].join('');
-            };
-        })(file);
-    } else if (file.type.match('application/pdf')) {
-        var fileURL = URL.createObjectURL(file);
-        document.getElementById('uploadContainer').innerHTML = '<iframe src="' + fileURL + '"></iframe>';
-    } else {
-        reader.onload = (function () {
-            return function (e) {
-                document.getElementById('uploadContainer').textContent = e.target.result;
-            };
-        })(file);
+    if (file) {
+        formDataState.file = file;
+        if (file.type.match('image.*')) {
+            reader.onload = (function () {
+                return function (e) {
+                    $('#uploadContainer').html(['<img src="', e.target.result, '" title="', escape(file.name), '"/>'].join(''));
+                };
+            })(file);
+        } else if (file.type.match('application/pdf')) {
+            var fileURL = URL.createObjectURL(file);
+            $('#uploadContainer').html('<iframe src="' + fileURL + '"></iframe>');
+        } else {
+            reader.onload = (function () {
+                return function (e) {
+                    $('#uploadContainer').text(e.target.result);
+                };
+            })(file);
+        }
+
+        reader.readAsDataURL(file);
+
+        if (formDataState.fields.length > 0) {
+            document.getElementById('submitBtn').style.display = "block";
+        }
     }
-
-    reader.readAsDataURL(file);
-
-    document.getElementById('submitBtn').style.display = "block";
 }
 
-document.querySelector("#fieldInput").addEventListener("keyup", function (event) {
+$("#fieldInput").on('keyup', function (event) {
     if (event.key === "Enter") {
-        let value = this.value.trim();
+        var value = this.value.trim();
         if (value) {
-            let fieldContainer = document.createElement("div");
-            fieldContainer.classList.add("field");
-            let fieldText = document.createElement("p");
-            fieldText.textContent = value;
-            let deleteIcon = document.createElement("i");
-            deleteIcon.classList.add("fa", "fa-times");
-            deleteIcon.addEventListener("click", function () {
-                this.parentNode.remove();
-                if (document.querySelector("#fieldsContainer").children.length === 0) {
-                    document.querySelector("#fieldPrompt").style.display = "block";
-                    document.querySelector(".field-icon").style.display = "block";
-                    document.querySelector("#extractionFields").style.display =
-                    "none"; // Hide extraction fields text if no fields exist
+            formDataState.fields.push(value);
+            var fieldContainer = $("<div class='field'></div>");
+            var fieldText = $("<p></p>").text(value);
+            var deleteIcon = $("<i class='fa fa-times'></i>").on('click', function () {
+                $(this).parent().remove();
+                formDataState.fields = formDataState.fields.filter(function(field) {
+                    return field !== value;
+                });
+                if ($("#fieldsContainer").children().length === 0) {
+                    $("#fieldPrompt, .field-icon").show();
+                    $("#extractionFields, #submitButton").hide();
                 }
             });
+
             fieldContainer.append(fieldText, deleteIcon);
-            document.querySelector("#fieldsContainer").append(fieldContainer);
+            $("#fieldsContainer").append(fieldContainer);
             this.value = "";
-            if (document.querySelector("#fieldsContainer").children.length === 1) {
-                document.querySelector("#fieldPrompt").style.display = "none";
-                document.querySelector(".field-icon").style.display = "none";
-                document.querySelector("#extractionFields").style.display =
-                "block"; // Show extraction fields text when a field is added
+
+            if ($("#fieldsContainer").children().length === 1) {
+                $("#fieldPrompt, .field-icon").hide();
+                $("#extractionFields, #submitButton").show();
             }
         }
     }

@@ -17,6 +17,8 @@
 
     <!-- Favicon for mobile devices -->
     <link rel="apple-touch-icon" sizes="128x128" href="/static/img/fav.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="overflow-x-hidden m-0 bg-cover custom-body">
@@ -196,11 +198,16 @@
                         <input type="text" id="fieldInput" placeholder="Enter your fields..." />
                     </div>
                 </div>
+                <div class="submitContainer">
+                    <button id="submitButton" style="display: none;">Submit for Extraction <i
+                            class="fa fa-arrow-right"></i></button>
+                </div>
             </div>
             <div class="demo-result">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 <p>Results displayed here</p>
             </div>
+            <div id="loading" class="spinner"></div>
         </div>
     </section>
 

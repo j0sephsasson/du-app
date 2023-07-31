@@ -544,6 +544,36 @@ HERO SECTION // GENERAL
     padding: 10px;
 }
 
+.submitContainer {
+    position: absolute; /* so that it does not affect the layout of other elements */
+    bottom: 10px; /* to position it at the bottom */
+    width: 100%; /* to span the whole width of the parent */
+    display: flex;
+    justify-content: center;
+}
+
+#submitButton {
+    font-size: 1.2em;
+    color: #fff;
+    background-color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background-color: #555;
+}
+
+#submitButton i {
+    margin-left: 10px;
+}
+
 #fieldsContainer {
     display: flex;
     flex-wrap: wrap;
@@ -687,6 +717,34 @@ HERO SECTION // GENERAL
         grid-template-columns: 1fr;
         height: auto; /* Adjust height to fit the content */
     }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.container-collapsed {
+    width: 0;
+    opacity: 0;
+    transition: width 2s ease-out, opacity 2s ease-out;
+    overflow: hidden;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+
+.results-expanded {
+    width: 100%;
+    transition: width 2s ease-in;
+    overflow: hidden;
 }
 
 /*--------------------------------------------------------------
