@@ -182,10 +182,13 @@
         <a href="#" class="cta-button full-access">Request Full Access</a>
         <div class="interactive-demo-card">
             <div class="demo-upload" id="uploadContainer">
-                <input type="file" id="fileUpload" style="display:none;" />
-                <i class="fa fa-upload" aria-hidden="true"></i>
-                <p>Click to upload your file</p>
-            </div>
+                <div class="upload-content">
+                    <input type="file" id="fileUpload" style="display:none;" />
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    <p>Click to upload your file</p>
+                </div>
+                <div class="dummy-input"></div> 
+            </div>            
             <div class="demo-fields">
                 <div class="demo-fields-inner">
                     <div class="field-prompt">
@@ -198,16 +201,18 @@
                         <input type="text" id="fieldInput" placeholder="Enter your fields..." />
                     </div>
                 </div>
-                <div class="submitContainer">
-                    <button id="submitButton" style="display: none;">Submit for Extraction <i
-                            class="fa fa-arrow-right"></i></button>
-                </div>
+                
             </div>
             <div class="demo-result">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 <p>Results displayed here</p>
             </div>
             <div id="loading" class="spinner"></div>
+            <div class="flash-message"></div>
+            <div class="submitContainer">
+                <button id="submitButton" style="display: none;">Submit for Extraction <i
+                        class="fa fa-arrow-right"></i></button>
+            </div>
         </div>
     </section>
 

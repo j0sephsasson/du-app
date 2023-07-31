@@ -63,6 +63,17 @@ $('#submitButton').on('click', function () {
         form_data.append('file', formDataState.file);
         form_data.append('fields', JSON.stringify(formDataState.fields));
 
+        // Array of messages to show
+        const messages = ['Uploading your document...', 'Running AI algorithms...', 'Extracting data...'];
+        let messageIndex = 0;
+        showMessage(messages[messageIndex]);
+
+        // Start a timer to change the message every 3 seconds
+        const messageInterval = setInterval(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            showMessage(messages[messageIndex]);
+        }, 3000);
+
         $.ajax({
             url: '/upload',
             dataType: 'text',
@@ -72,12 +83,14 @@ $('#submitButton').on('click', function () {
             data: form_data,
             type: 'post',
             success: function (response) {
-                $("#loading").hide();
-                // Remove the collapse class and add the expand class to show the results container
-                $("#resultContainer").removeClass("container-collapsed").addClass("results-expanded");
-                $("#resultText").text(response.message);
+                clearInterval(messageInterval);  // Clear the timer
+                $("#uploadContainer, .demo-fields").fadeOut('slow', function() {
+                    $("#loading").hide();
+                    $(".demo-result").hide().html(response.message).slideDown('slow');
+                });
             },
             error: function (response) {
+                clearInterval(messageInterval);  // Clear the timer
                 $("#loading").hide();
                 // Remove the collapse class to show the containers again
                 $("#uploadContainer, .demo-fields").removeClass("container-collapsed");
@@ -88,6 +101,17 @@ $('#submitButton').on('click', function () {
         alert("Please upload a file and add extraction fields before submitting");
     }
 });
+
+const flashMessage = document.querySelector('.flash-message');
+function showMessage(message) {
+    flashMessage.textContent = message;
+    flashMessage.classList.add('active');
+  
+    // Hide after 3 seconds
+    setTimeout(() => {
+        flashMessage.classList.remove('active');
+    }, 3000);
+}
 
 function handleFileSelect(evt) {
     var file = evt.target.files[0];
