@@ -54,6 +54,7 @@ document.getElementById('fileUpload').addEventListener('click', function (e) {
 $('#fileUpload').on('change', handleFileSelect);
 
 $('#submitButton').on('click', function () {
+    $("#submitButton").hide();
     if(formDataState.file && formDataState.fields.length > 0) {
         // Add class to make the containers collapse
         $("#uploadContainer, .demo-fields").addClass("container-collapsed");
@@ -99,6 +100,7 @@ $('#submitButton').on('click', function () {
         });
     } else {
         alert("Please upload a file and add extraction fields before submitting");
+        location.reload();
     }
 });
 
