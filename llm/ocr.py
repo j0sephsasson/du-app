@@ -1,19 +1,18 @@
-from flask import Flask, request, jsonify, g
-from paddleocr import PaddleOCR, draw_ocr
 import logging
-from PIL import Image
-import io
-import os, shutil
-
-app = Flask(__name__)
+import base64
+import os
+from datetime import datetime
+from paddleocr import PaddleOCR
+import json
+from io import BytesIO
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
-model = PaddleOCR(use_angle_cls=True,use_gpu=False)
-
-# Function to perform OCR
 def ocr(path):
+    # Initialize the model
+    model = PaddleOCR(use_angle_cls=True,use_gpu=False)
+    
     # Perform OCR
     logging.info("DOING OCR")
 
@@ -28,36 +27,26 @@ def ocr(path):
 
     return ocr_strings
 
-@app.route('/')
-def index():
-    # Log the received text
-    logging.info('I was called')
+def lambda_handler(event, context):
+    # Use the file extension in the input_key
+    file_ext = event["queryStringParameters"]["file_ext"]
+    input_key = f'{datetime.now().strftime("%Y%m%d%H%M%S%f")}{file_ext}'
 
-    return 'Hello World!'
+    input_directory = f'sourcedata/{input_key}'
+    
+    # Use BytesIO to handle both text and binary file types
+    input_content = BytesIO(base64.b64decode(event['body']))
+    os.makedirs(f'/tmp/{input_directory}', exist_ok=True)
+    with open(f'/tmp/{input_directory}', 'wb') as f:
+        f.write(input_content.read())
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    # Check if the post request has the file part
-    if 'file' not in request.files:
-        return jsonify({'status': 'No file part in the request'}), 400
+    ocr_strings = ocr(f'/tmp/{input_directory}')
 
-    file = request.files['file']
+    response_body = {
+        'ocr_result': ocr_strings
+    }
 
-    # If the user does not select a file, the browser might
-    # submit an empty file without a filename.
-    if file.filename == '':
-        return jsonify({'status': 'No selected file'}), 400
-
-    if file:
-        filepath = os.path.join('/tmp', file.filename)
-        file.save(filepath)
-
-        # OCR and write to file
-        string_list = ocr(filepath)
-
-        return jsonify({'status': 'success', 'result':string_list}), 200
-
-    return jsonify({'status': 'An error occurred processing the file'}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    return {
+        'statusCode': 200,
+        'body': json.dumps(response_body)
+    }
