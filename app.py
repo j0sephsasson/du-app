@@ -8,8 +8,20 @@ from dotenv import load_dotenv
 import base64
 import logging
 from traceback import format_exc
+from datetime import datetime
 
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+# Get the current date and time
+now = datetime.now()
+
+# Convert the current date and time into a string format: 'Year-Month-Day_Hour-Minute-Second'
+date_time = now.strftime("%Y-%m-%d_%H-%M-%S")
+
+# Create a filename for log file
+log_filename = f'logs/app_{date_time}.log'
+
+# Configure the logging
+logging.basicConfig(filename=log_filename, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
 
 load_dotenv()
 
