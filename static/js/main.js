@@ -47,3 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('dropdown').classList.remove('flex');
     });
 });
+
+function goToHome() {
+    window.location.href = '/';
+};
