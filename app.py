@@ -5,6 +5,7 @@ import os
 import requests
 from io import BytesIO
 from dotenv import load_dotenv
+import base64
 
 load_dotenv()
 
@@ -46,7 +47,7 @@ def upload():
         filename = secure_filename(file.filename)
 
         # Prepare the request to your API Gateway
-        api_url = str(os.getenv('INFERENCE_URL'))
+        api_url = (os.getenv('LAMBDA_URL'))
         file_ext = os.path.splitext(filename)[1]
         api_url += f"?file_ext={file_ext}"
 
@@ -55,10 +56,10 @@ def upload():
         }
 
         file_obj = BytesIO(file.read())
+        encoded_file = base64.b64encode(file_obj.getvalue()).decode()
 
         # Send the request and get the response
-        response = requests.post(api_url, headers=headers, files={"input_file": file_obj})
-
+        response = requests.post(api_url, headers=headers, json={"body": encoded_file})
 
         # Process the response from your Lambda function
         if response.status_code == 200:
