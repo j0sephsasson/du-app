@@ -65,15 +65,33 @@ $('#submitButton').on('click', function () {
         form_data.append('fields', JSON.stringify(formDataState.fields));
 
         // Array of messages to show
-        const messages = ['Uploading your document...', 'Running AI algorithms...', 'Extracting data...'];
+        const messages = ['Waking up your AI model...', 'Uploading your document...', 'Running AI algorithms...', 'Extracting data...'];
         let messageIndex = 0;
-        showMessage(messages[messageIndex]);
 
-        // Start a timer to change the message every 3 seconds
-        const messageInterval = setInterval(() => {
-            messageIndex = (messageIndex + 1) % messages.length;
-            showMessage(messages[messageIndex]);
-        }, 3000);
+        const flashMessage = document.querySelector('.flash-message');
+        const timeouts = [];
+
+        function showMessage() {
+
+            // Show the message
+            flashMessage.textContent = messages[messageIndex];
+            flashMessage.classList.add('active');
+
+            // Schedule the message to be hidden after 7 seconds
+            timeouts.push(setTimeout(() => {
+                flashMessage.classList.remove('active');
+
+                // Increase the index or stop if the end is reached
+                messageIndex++;
+                if (messageIndex < messages.length) {
+                    // Schedule the next message to be shown in 1 seconds
+                    timeouts.push(setTimeout(showMessage, 1000));
+                }
+            }, 5000));
+        }
+
+        // Start the cycle
+        showMessage();
 
         $.ajax({
             url: '/upload',
@@ -84,14 +102,28 @@ $('#submitButton').on('click', function () {
             data: form_data,
             type: 'post',
             success: function (response) {
-                clearInterval(messageInterval);  // Clear the timer
+                // Clear timeouts on success
+                timeouts.forEach(clearTimeout);
+
+                // Fade out the last message and hide it
+                $(flashMessage).fadeOut('slow', function(){
+                    flashMessage.classList.remove('active');
+                });
+
                 $("#uploadContainer, .demo-fields").fadeOut('slow', function() {
                     $("#loading").hide();
                     $(".demo-result").hide().html(response.message).slideDown('slow');
                 });
             },
             error: function (response) {
-                clearInterval(messageInterval);  // Clear the timer
+                // Clear timeouts on error
+                timeouts.forEach(clearTimeout);
+
+                // Fade out the last message and hide it
+                $(flashMessage).fadeOut('slow', function(){
+                    flashMessage.classList.remove('active');
+                });
+
                 $("#loading").hide();
                 // Remove the collapse class to show the containers again
                 $("#uploadContainer, .demo-fields").removeClass("container-collapsed");
@@ -103,17 +135,6 @@ $('#submitButton').on('click', function () {
         location.reload();
     }
 });
-
-const flashMessage = document.querySelector('.flash-message');
-function showMessage(message) {
-    flashMessage.textContent = message;
-    flashMessage.classList.add('active');
-  
-    // Hide after 3 seconds
-    setTimeout(() => {
-        flashMessage.classList.remove('active');
-    }, 3000);
-}
 
 function handleFileSelect(evt) {
     var file = evt.target.files[0];
