@@ -756,7 +756,7 @@ HERO SECTION // GENERAL
 .results-expanded {
     width: 100%;
     transition: width 2s ease-in;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .flash-message {

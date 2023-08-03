@@ -147,7 +147,7 @@ def job_result(job_id):
         if job.result.get("success"):
             logger.info(f'Successfully retrieved result for job id: {job_id}')
             logger.info(f'Data: {job.result.get("ocr_result")}')
-            return {"ocr_result": job.result.get("ocr_result")}
+            return {"success":True, "ocr_result": job.result.get("ocr_result")}
         else:
             logger.error(f'Error during processing for job id: {job_id}, Message: {job.result.get("message")}')
             return {"success": False, "message": "Error during processing", "error": job.result.get("message")}

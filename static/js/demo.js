@@ -230,7 +230,16 @@ function showJobResultError() {
 function showResult(result) {
     $("#uploadContainer, .demo-fields").fadeOut('slow', function() {
         $("#loading").hide();
-        $(".demo-result").hide().html(result.message).slideDown('slow');
+        if (result.success) {
+            if ('ocr_result' in result) {
+                $("#resultText").text(result.ocr_result.join('\n'));
+            } else {
+                $("#resultText").text("Results are not available");
+            }
+        } else {
+            $("#resultText").text(result.message);
+        }
+        $(".demo-result").hide().slideDown('slow');
     });
 }
 
