@@ -2,7 +2,13 @@ import logging
 import base64
 import os
 from datetime import datetime
-from paddleocr import PaddleOCR
+import traceback
+
+try:
+    from paddleocr import PaddleOCR
+except Exception as e:
+    logging.error("Exception occurred during import: %s", str(e))
+    logging.error(str(traceback.format_exc()))
 import json
 from io import BytesIO
 
@@ -11,7 +17,13 @@ logging.basicConfig(level=logging.INFO)
 
 def ocr(path):
     # Initialize the model
-    model = PaddleOCR(use_angle_cls=True,use_gpu=False)
+    try:
+        model = PaddleOCR(use_angle_cls=True, use_gpu=False)
+    except Exception as e:
+        logging.info("Exception occurred: %s", str(e))
+        logging.info(str(traceback.format_exc()))
+        return None
+
     
     # Perform OCR
     logging.info("DOING OCR")
@@ -28,25 +40,42 @@ def ocr(path):
     return ocr_strings
 
 def lambda_handler(event, context):
+    logging.info("lambda function invoked")
+
     # Use the file extension in the input_key
     file_ext = event["queryStringParameters"]["file_ext"]
-    input_key = f'{datetime.now().strftime("%Y%m%d%H%M%S%f")}{file_ext}'
+    
 
-    input_directory = f'sourcedata/{input_key}'
+    # Create the filename and the directories
+    input_filename = f'{datetime.now().strftime("%Y%m%d%H%M%S%f")}{file_ext}'
+    input_directory = 'sourcedata'
+    full_path = f'/tmp/{input_directory}/{input_filename}'
+
+    # Create directories until the penultimate level
+    os.makedirs(f'/tmp/{input_directory}', exist_ok=True)
     
     # Use BytesIO to handle both text and binary file types
     input_content = BytesIO(base64.b64decode(event['body']))
-    os.makedirs(f'/tmp/{input_directory}', exist_ok=True)
-    with open(f'/tmp/{input_directory}', 'wb') as f:
+
+    # Write your file to the leaf level
+    with open(full_path, 'wb') as f:
         f.write(input_content.read())
 
-    ocr_strings = ocr(f'/tmp/{input_directory}')
+    logging.info("file saved...performing OCR next")
 
-    response_body = {
-        'ocr_result': ocr_strings
-    }
+    ocr_strings = ocr(full_path)
 
-    return {
-        'statusCode': 200,
-        'body': json.dumps(response_body)
-    }
+    if ocr_strings:
+
+        response_body = {
+            'ocr_result': ocr_strings
+        }
+
+        return {
+            'statusCode': 200,
+            'body': json.dumps(response_body)
+        }
+    else:
+        return {
+            'statusCode': 500
+        }

@@ -2,10 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 import time
 from werkzeug.utils import secure_filename
 import os
+import requests
+from io import BytesIO
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-
-UPLOAD_FOLDER = '/Users/joesasson/Desktop/sites/du/du-app/static/uploads'
 
 @app.route('/')
 def index():
@@ -36,17 +39,45 @@ def upload():
     print('I was called')
     print('fields:', fields)
 
-    time.sleep(4)
-
     if file.filename == '':
         return jsonify({"success": False, "message": "No file selected for uploading"})
 
     if file:
         filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_FOLDER, filename))
 
-        # At this point, you can process the file as you wish and then respond accordingly.
-        return jsonify({"success": True, "message": "File successfully uploaded"})
+        # Prepare the request to your API Gateway
+        api_url = str(os.getenv('INFERENCE_URL'))
+        file_ext = os.path.splitext(filename)[1]
+        api_url += f"?file_ext={file_ext}"
+
+        headers = {
+            "x-api-key": str(os.getenv('API_GATEWAY_KEY'))
+        }
+
+        file_obj = BytesIO(file.read())
+
+        # Send the request and get the response
+        response = requests.post(api_url, headers=headers, files={"input_file": file_obj})
+
+
+        # Process the response from your Lambda function
+        if response.status_code == 200:
+            lambda_response = response.json()
+            print("SUCCESS:")
+            print(lambda_response["ocr_result"])
+            return jsonify({
+                "success": True,
+                "message": "File successfully uploaded",
+                "ocr_result": lambda_response["ocr_result"]
+            })
+        else:
+            print("ERROR:")
+            print(response.content.decode())
+            return jsonify({
+                "success": False,
+                "message": "Error invoking Lambda function",
+                "lambda_response": response.content.decode()
+            })
 
 
 if __name__ == '__main__':
