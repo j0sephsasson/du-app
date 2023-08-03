@@ -9,6 +9,11 @@ import base64
 import logging
 from traceback import format_exc
 from datetime import datetime
+from rq import Queue
+from rq.job import NoSuchJobError
+from worker import r
+from rq.job import Job
+from tasks import process_upload
 
 # Get the current date and time
 now = datetime.now()
@@ -22,10 +27,12 @@ log_filename = f'logs/app_{date_time}.log'
 # Configure the logging
 logging.basicConfig(filename=log_filename, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-
 load_dotenv()
 
 app = Flask(__name__)
+
+# Initialize RQ
+q = Queue(connection=r)
 
 @app.route('/')
 def index():
@@ -55,6 +62,7 @@ def upload():
             return jsonify({"success": False, "message": "No file part"})
 
         file = request.files['file']
+        file_contents = file.read()
         fields = request.form['fields']
 
         if file.filename == '':
@@ -63,40 +71,77 @@ def upload():
 
         if file:
             filename = secure_filename(file.filename)
-            logger.info(f'File "{filename}" received for uploading')
 
-            # Prepare the request to the lambda URL
-            api_url = os.getenv('LAMBDA_URL')
-            file_ext = os.path.splitext(filename)[1]
-            api_url += f"?file_ext={file_ext}"
-            logger.info(f'Prepared API URL: {api_url}')
-
-            file_obj = BytesIO(file.read())
-            encoded_file = base64.b64encode(file_obj.getvalue()).decode()
-
-            # Send the request and get the response
-            logger.info('Sending request to Lambda function')
-            response = requests.post(api_url, json={"body": encoded_file})
-
-            # Process the response from Lambda function
-            if response.status_code == 200:
-                lambda_response = response.json()
-                logger.info("SUCCESS: {}".format(lambda_response["ocr_result"]))
-                return jsonify({
-                    "success": True,
-                    "message": "File successfully uploaded",
-                    "ocr_result": lambda_response["ocr_result"]
-                })
-            else:
-                logger.error("ERROR: {}".format(response.content.decode()))
-                return jsonify({
-                    "success": False,
-                    "message": "Error invoking Lambda function",
-                    "lambda_response": response.content.decode()
-                })
+            # Offload the file processing to the RQ worker
+            job = q.enqueue(process_upload, file_contents, filename)
+            return jsonify({
+                "success": True,
+                "message": "File is being processed",
+                "job_id": job.get_id()
+            })
     except Exception as e:
         logger.error('Exception occurred', exc_info=True)
         return jsonify({"success": False, "message": "An error occurred while processing the request"})
+    
+@app.route('/job/status/<job_id>', methods=['GET'])
+def job_status(job_id):
+    """
+    Check the status of a job
+    """
+    logger = logging.getLogger('job_status')
+    try:
+        logger.info(f'Fetching job with id: {job_id}')
+        job = Job.fetch(job_id, connection=r)
+    except NoSuchJobError:
+        logger.error(f'No such job: {job_id}')
+        return {"success": False, "message": f"No such job: {job_id}"}
+    except Exception as e:
+        logger.error('Exception occurred while fetching job status', exc_info=True)
+        return {"success": False, "message": "An error occurred while checking the job status"}
+
+    if job.is_finished:
+        logger.info(f'Job {job_id} has finished')
+        return {"status": "finished"}
+    elif job.is_queued:
+        logger.info(f'Job {job_id} is in the queue')
+        return {"status": "queued"}
+    elif job.is_started:
+        logger.info(f'Job {job_id} has started')
+        return {"status": "started"}
+    elif job.is_failed:
+        logger.info(f'Job {job_id} has failed')
+        return {"status": "failed"}
+    else:
+        logger.warning(f'Job {job_id} status is unknown')
+        return {"status": "unknown"}
+
+@app.route('/job/result/<job_id>', methods=['GET'])
+def job_result(job_id):
+    """
+    Get the result of a job
+    """
+    logger = logging.getLogger('job_result')
+    try:
+        logger.info(f'Fetching result for job id: {job_id}')
+        job = Job.fetch(job_id, connection=r)
+    except NoSuchJobError:
+        logger.error(f'No such job: {job_id}')
+        return {"success": False, "message": f"No such job: {job_id}"}
+    except Exception as e:
+        logger.error('Exception occurred while fetching job result', exc_info=True)
+        return {"success": False, "message": "An error occurred while fetching the job result"}
+
+    if job.is_finished:
+        if job.result.get("success"):
+            logger.info(f'Successfully retrieved result for job id: {job_id}')
+            logger.info(f'Data: {job.result.get("ocr_result")}')
+            return {"ocr_result": job.result.get("ocr_result")}
+        else:
+            logger.error(f'Error during processing for job id: {job_id}, Message: {job.result.get("message")}')
+            return {"success": False, "message": "Error during processing", "error": job.result.get("message")}
+    else:
+        logger.info(f'Job {job_id} is not finished yet')
+        return {"success": False, "message": "Job not finished"}
 
 
 if __name__ == '__main__':
