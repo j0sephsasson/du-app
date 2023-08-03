@@ -6,6 +6,10 @@ import requests
 from io import BytesIO
 from dotenv import load_dotenv
 import base64
+import logging
+from traceback import format_exc
+
+logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 load_dotenv()
 
@@ -30,55 +34,57 @@ def upload():
     Returns:
         str: Response message and success indication
     """
+    logger = logging.getLogger('upload')
+    try:
+        logger.info('Processing upload request')
+        
+        if 'file' not in request.files:
+            logger.error('No file part in request')
+            return jsonify({"success": False, "message": "No file part"})
 
-    if 'file' not in request.files:
-        return jsonify({"success": False, "message": "No file part"})
+        file = request.files['file']
+        fields = request.form['fields']
 
-    file = request.files['file']
-    fields = request.form['fields']
+        if file.filename == '':
+            logger.error('No file selected for uploading')
+            return jsonify({"success": False, "message": "No file selected for uploading"})
 
-    print('I was called')
-    print('fields:', fields)
+        if file:
+            filename = secure_filename(file.filename)
+            logger.info(f'File "{filename}" received for uploading')
 
-    if file.filename == '':
-        return jsonify({"success": False, "message": "No file selected for uploading"})
+            # Prepare the request to the lambda URL
+            api_url = os.getenv('LAMBDA_URL')
+            file_ext = os.path.splitext(filename)[1]
+            api_url += f"?file_ext={file_ext}"
+            logger.info(f'Prepared API URL: {api_url}')
 
-    if file:
-        filename = secure_filename(file.filename)
+            file_obj = BytesIO(file.read())
+            encoded_file = base64.b64encode(file_obj.getvalue()).decode()
 
-        # Prepare the request to your API Gateway
-        api_url = (os.getenv('LAMBDA_URL'))
-        file_ext = os.path.splitext(filename)[1]
-        api_url += f"?file_ext={file_ext}"
+            # Send the request and get the response
+            logger.info('Sending request to Lambda function')
+            response = requests.post(api_url, json={"body": encoded_file})
 
-        headers = {
-            "x-api-key": str(os.getenv('API_GATEWAY_KEY'))
-        }
-
-        file_obj = BytesIO(file.read())
-        encoded_file = base64.b64encode(file_obj.getvalue()).decode()
-
-        # Send the request and get the response
-        response = requests.post(api_url, headers=headers, json={"body": encoded_file})
-
-        # Process the response from your Lambda function
-        if response.status_code == 200:
-            lambda_response = response.json()
-            print("SUCCESS:")
-            print(lambda_response["ocr_result"])
-            return jsonify({
-                "success": True,
-                "message": "File successfully uploaded",
-                "ocr_result": lambda_response["ocr_result"]
-            })
-        else:
-            print("ERROR:")
-            print(response.content.decode())
-            return jsonify({
-                "success": False,
-                "message": "Error invoking Lambda function",
-                "lambda_response": response.content.decode()
-            })
+            # Process the response from Lambda function
+            if response.status_code == 200:
+                lambda_response = response.json()
+                logger.info("SUCCESS: {}".format(lambda_response["ocr_result"]))
+                return jsonify({
+                    "success": True,
+                    "message": "File successfully uploaded",
+                    "ocr_result": lambda_response["ocr_result"]
+                })
+            else:
+                logger.error("ERROR: {}".format(response.content.decode()))
+                return jsonify({
+                    "success": False,
+                    "message": "Error invoking Lambda function",
+                    "lambda_response": response.content.decode()
+                })
+    except Exception as e:
+        logger.error('Exception occurred', exc_info=True)
+        return jsonify({"success": False, "message": "An error occurred while processing the request"})
 
 
 if __name__ == '__main__':
