@@ -232,20 +232,34 @@ HERO SECTION // GENERAL
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    box-shadow: 0 0 20px rgba(75,123,236,0.5); /* gentle glow on hover */
 }
 
 .service-card i {
-    color: #fff;
+    color: transparent;  /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari browser compatibility */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.service-card h3 {
+    color: transparent;  /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari browser compatibility */
     transition: color 0.3s ease;
 }
 
-.service-card i:hover {
-    color: #ddd;
+.service-card p {
+    color: #fff; /* Whiter color */
+    transition: color 0.3s ease;
+    font-size: 1.2rem; /* Slightly larger */
+    line-height: 1.5; /* Looser line height for readability */
 }
 
-.service-card h3, .service-card p {
-    color: #ddd;
+.service-card p:hover {
+    color: #eee; /* Slightly softer white on hover */
 }
 
 /*--------------------------------------------------------------
@@ -299,7 +313,7 @@ HERO SECTION // GENERAL
 }
 
 .case-details {
-    color: #ddd;
+    color: #fff;
 }
 
 .case-card {
@@ -312,7 +326,7 @@ HERO SECTION // GENERAL
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
     text-align: left;
-    width: 570px;
+    width: 520px;
     padding: 2em;
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
     display: flex;
@@ -462,10 +476,10 @@ HERO SECTION // GENERAL
     font-size: 2.5em;
     margin-right: 15px;
     transition: text-shadow 0.5s ease; 
-}
-
-.document-understanding-case-card:hover .fa {
-    text-shadow: 0 0 20px #fff; 
+    color: transparent;  /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari browser compatibility */
 }
 
 .document-understanding-case-card .title {
@@ -474,15 +488,21 @@ HERO SECTION // GENERAL
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    color: transparent;  /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari browser compatibility */
 }
 
 .document-understanding-case-card .description {
-    font-size: 1.1em;
+    font-size: 1.2em;
     transition: text-shadow 0.5s ease; 
+    color: #ddd;
 }
 
 .document-understanding-case-card:hover .description {
     text-shadow: 0 0 20px #fff;
+    color: #bbb;
 }
 
 /* media queries */
