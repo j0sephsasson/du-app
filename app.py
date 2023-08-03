@@ -24,8 +24,23 @@ date_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 # Create a filename for log file
 log_filename = f'logs/app_{date_time}.log'
 
-# Configure the logging
-logging.basicConfig(filename=log_filename, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+# Create a logger
+logger = logging.getLogger('app')
+
+# Set logger level
+logger.setLevel(logging.INFO)
+
+# Create a file handler
+handler = logging.FileHandler(log_filename)
+
+# Set a format for the messages
+formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+
+# Set the format for the handler
+handler.setFormatter(formatter)
+
+# Add the handler to the logger
+logger.addHandler(handler)
 
 load_dotenv()
 
@@ -53,7 +68,6 @@ def upload():
     Returns:
         str: Response message and success indication
     """
-    logger = logging.getLogger('upload')
     try:
         logger.info('Processing upload request')
         
@@ -88,7 +102,6 @@ def job_status(job_id):
     """
     Check the status of a job
     """
-    logger = logging.getLogger('job_status')
     try:
         logger.info(f'Fetching job with id: {job_id}')
         job = Job.fetch(job_id, connection=r)
@@ -120,7 +133,6 @@ def job_result(job_id):
     """
     Get the result of a job
     """
-    logger = logging.getLogger('job_result')
     try:
         logger.info(f'Fetching result for job id: {job_id}')
         job = Job.fetch(job_id, connection=r)

@@ -15,10 +15,23 @@ date_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 # Create a filename for log file
 log_filename = f'logs/tasks_{date_time}.log'
 
-# Configure the logging
-logging.basicConfig(filename=log_filename, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+# Create a logger
+logger = logging.getLogger('tasks')
 
-logger = logging.getLogger('upload_task')
+# Set logger level
+logger.setLevel(logging.INFO)
+
+# Create a file handler
+handler = logging.FileHandler(log_filename)
+
+# Set a format for the messages
+formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+
+# Set the format for the handler
+handler.setFormatter(formatter)
+
+# Add the handler to the logger
+logger.addHandler(handler)
 
 load_dotenv()
 
