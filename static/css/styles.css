@@ -1,6 +1,10 @@
 /*--------------------------------------------------------------
 HERO SECTION // GENERAL
 --------------------------------------------------------------*/
+body {
+    overflow-x: hidden;
+}
+
 /* CTA button */
 .cta-button {
     display: inline-block;
