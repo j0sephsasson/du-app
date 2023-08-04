@@ -289,6 +289,7 @@ body {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     padding: 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .service-card:hover {
