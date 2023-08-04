@@ -32,7 +32,7 @@ RUN pip3 install urllib3==1.26.5
 RUN python -c "from paddleocr import PaddleOCR; PaddleOCR()"
 
 # Copy function code
-COPY llm/ocr.py .
+COPY ocr.py .
 
 # Set the CMD to your handler
 CMD ["ocr.lambda_handler"]
