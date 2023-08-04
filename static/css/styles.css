@@ -9,34 +9,35 @@ HERO SECTION // GENERAL
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #fff;
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     border: none;
     border-radius: 50px;
-    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
+    box-shadow: 0px 10px 20px rgba(252, 70, 107, 0.3);
     transition: all 0.3s ease;
     text-decoration: none;
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
+    box-shadow: 0px 15px 20px rgba(252, 70, 107, 0.4);
 }
 
 .cta-button:active {
     transform: translateY(1px);
-    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
+    box-shadow: 0px 5px 10px rgba(252, 70, 107, 0.4);
 }
 
 .full-access {
     display: inline-block;
-    padding: 8px 16px; /* Smaller button */
+    padding: 8px 16px;
+    /* Smaller button */
     font-size: 1em;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #fff;
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.7);
+    border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 50px;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -59,7 +60,7 @@ HERO SECTION // GENERAL
 .custom-h2 {
     font-size: 2em;
     letter-spacing: 0.3em;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .custom-body::before {
@@ -79,11 +80,12 @@ HERO SECTION // GENERAL
     font-size: 3em;
     letter-spacing: 0.3em;
     margin-bottom: 2em;
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     animation: textfade 5s infinite;
 }
 
-.custom-h1::before, .custom-h1::after {
+.custom-h1::before,
+.custom-h1::after {
     content: "";
     position: absolute;
     top: 0;
@@ -125,18 +127,39 @@ HERO SECTION // GENERAL
 }
 
 @keyframes lightscan {
-    0%, 100% { transform: translateX(-100%); }
-    50% { transform: translateX(100%); }
+
+    0%,
+    100% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
 }
 
 @keyframes textfade {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
 }
 
 @keyframes bgfade {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 /*--------------------------------------------------------------
@@ -147,7 +170,7 @@ HERO SECTION // GENERAL
     justify-content: space-between;
     align-items: center;
     border: 2px solid #fff;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .custom-nav div:first-child {
@@ -160,10 +183,10 @@ HERO SECTION // GENERAL
     color: rgba(255, 255, 255, 0.6);
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: color 0.3s ease;
-    align-self: center; 
+    align-self: center;
 }
 
 .custom-nav a:hover {
@@ -173,22 +196,22 @@ HERO SECTION // GENERAL
 .custom-nav a:last-child {
     display: inline-block;
     padding: 8px 16px;
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     border: none;
     border-radius: 50px;
-    box-shadow: 0px 10px 20px rgba(252,70,107,0.3);
+    box-shadow: 0px 10px 20px rgba(252, 70, 107, 0.3);
     transition: all 0.3s ease;
     text-decoration: none;
 }
 
 .custom-nav a:last-child:hover {
     transform: translateY(-3px);
-    box-shadow: 0px 15px 20px rgba(252,70,107,0.4);
+    box-shadow: 0px 15px 20px rgba(252, 70, 107, 0.4);
 }
 
 .custom-nav a:last-child:active {
     transform: translateY(1px);
-    box-shadow: 0px 5px 10px rgba(252,70,107,0.4);
+    box-shadow: 0px 5px 10px rgba(252, 70, 107, 0.4);
 }
 
 #dropdown {
@@ -225,41 +248,49 @@ HERO SECTION // GENERAL
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     padding: 20px;
     text-align: center;
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 0 20px rgba(75,123,236,0.5); /* gentle glow on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .service-card i {
-    color: transparent;  /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
-    -webkit-background-clip: text; /* For Safari browser compatibility */
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .service-card h3 {
-    color: transparent;  /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
-    -webkit-background-clip: text; /* For Safari browser compatibility */
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
     transition: color 0.3s ease;
 }
 
 .service-card p {
-    color: #fff; /* Whiter color */
+    color: #fff;
+    /* Whiter color */
     transition: color 0.3s ease;
-    font-size: 1.2rem; /* Slightly larger */
-    line-height: 1.5; /* Looser line height for readability */
+    font-size: 1.2rem;
+    /* Slightly larger */
+    line-height: 1.5;
+    /* Looser line height for readability */
 }
 
 .service-card p:hover {
-    color: #eee; /* Slightly softer white on hover */
+    color: #eee;
+    /* Slightly softer white on hover */
 }
 
 /*--------------------------------------------------------------
@@ -274,7 +305,7 @@ HERO SECTION // GENERAL
     position: relative;
     display: flex;
     justify-content: space-around;
-    padding: 20px 0;
+    padding: 10px 0;
     list-style: none;
     text-align: center;
     counter-reset: item;
@@ -321,14 +352,17 @@ HERO SECTION // GENERAL
     top: 100%;
     left: 50%;
     transform: translate(-50%, 20px);
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Semi-transparent black background */
     color: #fff;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Subtle white glow */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    /* Subtle white glow */
     text-align: left;
-    width: 520px;
+    width: 540px;
     padding: 2em;
-    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Add shadow to transition */
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+    /* Add shadow to transition */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -336,12 +370,14 @@ HERO SECTION // GENERAL
 }
 
 .case-card:hover {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* Intensify white glow on hover */
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    /* Intensify white glow on hover */
 }
 
 .case-card.hidden {
     opacity: 0;
-    transform: translate(-50%, 30px); /* Move it further down when hidden */
+    transform: translate(-50%, 30px);
+    /* Move it further down when hidden */
     pointer-events: none;
     display: none;
 }
@@ -359,13 +395,15 @@ HERO SECTION // GENERAL
     text-align: center;
 }
 
-.case-card .fas, .case-card img {
+.case-card .fas,
+.case-card img {
     display: block;
     margin: 0 auto;
     font-size: 14em;
     max-width: 100%;
     height: auto;
 }
+
 .case-content {
     display: flex;
     align-items: center;
@@ -405,24 +443,30 @@ HERO SECTION // GENERAL
         flex-direction: column;
         align-items: center;
     }
+
     .timeline-item {
         width: 100%;
     }
+
     .case-card {
         top: auto;
         bottom: 100%;
         left: 0;
         width: 100%;
         transform: translate(0, 20px);
+        margin-top: 20px;
     }
+
     .case-card.hidden {
         transform: translate(0, 30px);
     }
+
     .case-content {
         flex-direction: column;
     }
+
     .icon-container {
-        border-right: none; 
+        border-right: none;
         padding-right: 0;
         padding-bottom: 20px;
     }
@@ -451,18 +495,18 @@ HERO SECTION // GENERAL
 }
 
 .document-understanding-case-card {
-    position: relative; 
+    position: relative;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     text-align: left;
-    width: 100%; 
+    width: 100%;
     padding: 40px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease; 
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     justify-content: center;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.8));
 }
@@ -475,11 +519,13 @@ HERO SECTION // GENERAL
 .document-understanding-case-card .fa {
     font-size: 2.5em;
     margin-right: 15px;
-    transition: text-shadow 0.5s ease; 
-    color: transparent;  /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    transition: text-shadow 0.5s ease;
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
-    -webkit-background-clip: text; /* For Safari browser compatibility */
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
 }
 
 .document-understanding-case-card .title {
@@ -488,15 +534,17 @@ HERO SECTION // GENERAL
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    color: transparent;  /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
     background-clip: text;
-    -webkit-background-clip: text; /* For Safari browser compatibility */
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
 }
 
 .document-understanding-case-card .description {
     font-size: 1.2em;
-    transition: text-shadow 0.5s ease; 
+    transition: text-shadow 0.5s ease;
     color: #ddd;
 }
 
@@ -525,28 +573,30 @@ HERO SECTION // GENERAL
 }
 
 .interactive-demo-card {
-    position: relative; 
+    position: relative;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     text-align: center;
-    width: 75vw; 
+    width: 75vw;
     height: 80vh;
     max-width: 1200px;
     padding: 20px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease; 
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
     display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
     justify-items: center;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(25, 25, 25, 0.8));
-    margin-top: 30px; 
+    margin-top: 30px;
     padding-bottom: 20px;
 }
 
-.demo-upload, .demo-result, .demo-fields {
+.demo-upload,
+.demo-result,
+.demo-fields {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -558,17 +608,23 @@ HERO SECTION // GENERAL
 }
 
 .demo-fields {
-    border-radius: 10px; /* Increased border radius */
-    background-color: rgba(255, 255, 255, 0.05); /* Increased transparency */
-    box-shadow: none; /* Removed box-shadow to make it less bulky */
+    border-radius: 10px;
+    /* Increased border radius */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Increased transparency */
+    box-shadow: none;
+    /* Removed box-shadow to make it less bulky */
     position: relative;
     padding: 10px;
 }
 
 .submitContainer {
-    position: absolute; /* so that it does not affect the layout of other elements */
-    bottom: 10px; /* to position it at the bottom */
-    width: 100%; /* to span the whole width of the parent */
+    position: absolute;
+    /* so that it does not affect the layout of other elements */
+    bottom: 10px;
+    /* to position it at the bottom */
+    width: 100%;
+    /* to span the whole width of the parent */
     display: flex;
     padding-top: 50px;
     justify-content: center;
@@ -605,42 +661,48 @@ HERO SECTION // GENERAL
 }
 
 .field {
-    background-color: rgba(255, 255, 255, 0.1); 
+    background-color: rgba(255, 255, 255, 0.1);
     color: #fff;
-    border-radius: 15px; /* Less rounded edges */
-    padding: 5px 10px; /* Reduced padding */
+    border-radius: 15px;
+    /* Less rounded edges */
+    padding: 5px 10px;
+    /* Reduced padding */
     margin: 5px;
     display: flex;
     align-items: center;
-    justify-content: space-between; 
-    font-size: 1em; /* Smaller font */
-    width: 90%; 
+    justify-content: space-between;
+    font-size: 1em;
+    /* Smaller font */
+    width: 90%;
     position: relative;
-    line-height: 1.4em; /* Controlled line-height */
+    line-height: 1.4em;
+    /* Controlled line-height */
 }
 
 .field p {
     margin: 0;
     text-align: center;
-    width: 85%; 
+    width: 85%;
 }
 
 .field i {
     cursor: pointer;
-    font-size: 1.2em; /* Smaller icon */
-    color: #f44336; 
+    font-size: 1.2em;
+    /* Smaller icon */
+    color: #f44336;
     transition: color 0.3s ease;
     position: absolute;
-    right: 10px; 
+    right: 10px;
     top: 8px;
 }
 
 .field:hover {
-    background-color: rgba(255, 255, 255, 0.3); 
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .field i:hover {
-    color: #c62828; /* Dark Red */
+    color: #c62828;
+    /* Dark Red */
 }
 
 .inputContainer {
@@ -651,7 +713,8 @@ HERO SECTION // GENERAL
 }
 
 .dummy-input {
-    flex: 0 0 54px; /* This ensures that the dummy input has a height of 42px and does not grow or shrink */
+    flex: 0 0 54px;
+    /* This ensures that the dummy input has a height of 42px and does not grow or shrink */
     margin-top: 20px;
 }
 
@@ -659,16 +722,20 @@ HERO SECTION // GENERAL
     width: 90%;
     padding: 10px;
     margin-top: 20px;
-    border-radius: 10px; /* Increased border radius */
-    background-color: rgba(50, 50, 50, 0.7); /* Made it slightly transparent */
-    border: none; /* Removed border to make it less bulky */
+    border-radius: 10px;
+    /* Increased border radius */
+    background-color: rgba(50, 50, 50, 0.7);
+    /* Made it slightly transparent */
+    border: none;
+    /* Removed border to make it less bulky */
     color: #fff;
     font-size: 1.2em;
     transition: background-color 0.3s ease;
 }
 
 #fieldInput:hover {
-    background-color: rgba(60, 60, 60, 0.7); /* Added hover transition */
+    background-color: rgba(60, 60, 60, 0.7);
+    /* Added hover transition */
 }
 
 
@@ -686,7 +753,8 @@ HERO SECTION // GENERAL
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
 }
 
-.demo-upload, .demo-result {
+.demo-upload,
+.demo-result {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -706,20 +774,26 @@ HERO SECTION // GENERAL
 }
 
 .demo-upload {
-    border-radius: 10px; /* Increased border radius */
-    background-color: rgba(255, 255, 255, 0.05); /* Increased transparency */
-    box-shadow: none; /* Removed box-shadow to make it less bulky */
+    border-radius: 10px;
+    /* Increased border radius */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Increased transparency */
+    box-shadow: none;
+    /* Removed box-shadow to make it less bulky */
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.demo-upload p, .demo-result p, .demo-fields p {
+.demo-upload p,
+.demo-result p,
+.demo-fields p {
     font-size: 1.5em;
     margin-top: 20px;
 }
 
-.demo-upload:hover, .demo-fields:hover {
+.demo-upload:hover,
+.demo-fields:hover {
     box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.4);
 }
 
@@ -727,7 +801,8 @@ HERO SECTION // GENERAL
     background-color: rgba(255, 255, 255, 0.8);
     color: #000;
     display: none;
-    border-radius: 10px; /* Increased border radius */
+    border-radius: 10px;
+    /* Increased border radius */
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -745,8 +820,10 @@ HERO SECTION // GENERAL
 }
 
 .demo-upload iframe {
-    width: 100%;  /* or any width you want */
-    height: 100%;  /* or any height you want */
+    width: 100%;
+    /* or any width you want */
+    height: 100%;
+    /* or any height you want */
     border: none;
 }
 
@@ -805,15 +882,21 @@ HERO SECTION // GENERAL
 @media (max-width: 767px) {
     .interactive-demo-card {
         flex-direction: column;
-        height: auto; /* Adjust height to fit the content */
+        height: 570px;
+        /* Adjust height to fit the content */
+    }
+
+    .dummy-input {
+        display: none;
     }
 }
 
 @keyframes spin {
-    0% { 
+    0% {
         transform: translate(-50%, -50%) rotate(0deg);
     }
-    100% { 
+
+    100% {
         transform: translate(-50%, -50%) rotate(360deg);
     }
 }
@@ -822,85 +905,95 @@ HERO SECTION // GENERAL
 # FOOTER
 --------------------------------------------------------------*/
 .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 60px 80px;
-    color: #fff;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);  /* subtle border for division */
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.2);  /* shadow for depth */
 }
 
-.footer-logo {
-    font-size: 2.2em;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for the logo */
-    transition: all 0.3s ease;
-}
-
-.footer-logo:hover {
-    transform: scale(1.1); /* subtle scaling effect on hover */
-}
-
-.footer-links {
-    display: flex;
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 60px;
+    justify-items: center;
 }
 
-.footer-link {
-    text-decoration: none;
+.footer a {
     color: rgba(255, 255, 255, 0.6);
-    transition: color 0.3s ease, transform 0.3s ease;
-    text-transform: uppercase; /* uppercase text for a sleek look */
-    letter-spacing: 1px; /* letter spacing for a sharp look */
+    transition: color 0.3s ease;
 }
 
-.footer-link:hover {
+.footer a:hover {
     color: #fff;
-    transform: translateY(-3px); /* subtle lift on hover */
 }
 
-.footer-contact {
-    text-align: right;
+.footer h3 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer .tagline {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+}
+
+.footer-newsletter .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.footer-newsletter input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    margin-bottom: 10px;
+}
+
+.footer-newsletter button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ff7a59;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-newsletter button:hover {
+    background-color: #ff884d;
 }
 
 /* media queries */
 @media (max-width: 767px) {
     .footer {
+        padding: 60px;
+        margin-bottom: 50px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer a {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .footer-newsletter form {
+        display: flex;
         flex-direction: column;
-        text-align: center;
-        padding: 30px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 20px;
-        margin-bottom: 80px;
-    }
-
-    .footer-link {
-        margin: 5px 0; /* reduced margin for less space between links */
-    }
-
-    .footer-contact {
-        display: none;
-    }
-
-    .footer-logo {
-        margin-bottom: 20px;
     }
 }
 
 /*--------------------------------------------------------------
 # ACCESS
 --------------------------------------------------------------*/
-.card-icon, .card-icon-full {
-    font-size: 4.5em;
+.card-icon,
+.card-icon-full {
+    font-size: 3.5em;
 }
 
 .card-title {
-    font-size: 2.5em;
+    font-size: 2.0em;
     text-transform: uppercase;
     letter-spacing: .05em;
 }
@@ -908,9 +1001,11 @@ HERO SECTION // GENERAL
 .relative {
     background: #000;
     color: #fff;
-    border-radius: 25px; /* rounded corners */
+    border-radius: 25px;
+    /* rounded corners */
     text-align: center;
-    width: 75%; /* thinner card */
+    width: 85%;
+    /* thinner card */
     /* padding: 10px; */
     transition: transform 0.5s ease-in-out;
     display: flex;
@@ -918,11 +1013,13 @@ HERO SECTION // GENERAL
     justify-content: center;
     align-items: center;
     gap: 15px;
-    height: 570px; /* adjusted height */
+    height: 530px;
+    /* adjusted height */
 }
 
 .relative:hover {
-    transform: scale(1.05); /* hover scale effect */
+    transform: scale(1.05);
+    /* hover scale effect */
 }
 
 .relative:hover .card-icon-full {
@@ -942,20 +1039,25 @@ HERO SECTION // GENERAL
 }
 
 .feature-item {
-    font-size: 1.1em;
-    line-height: 1.8;
+    font-size: 1.0em;
+    line-height: 1.5;
     letter-spacing: .05em;
     font-weight: bold;
     display: flex;
     align-items: center;
-    border-radius: 50px; /* Add border-radius for bubble effect */
-    background-color: rgba(255,255,255,0.1); /* Add background color for bubble effect */
-    padding: 10px; /* Add padding to space out the text from the bubble border */
-    transition: background-color 0.3s ease-in-out; /* Transition for hover effect */
+    border-radius: 50px;
+    /* Add border-radius for bubble effect */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Add background color for bubble effect */
+    padding: 10px;
+    /* Add padding to space out the text from the bubble border */
+    transition: background-color 0.3s ease-in-out;
+    /* Transition for hover effect */
 }
 
 .feature-item:hover {
-    background-color: rgba(255,255,255,0.2); /* Change background color on hover */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Change background color on hover */
 }
 
 .feature-active {
@@ -971,7 +1073,8 @@ HERO SECTION // GENERAL
 
 .feature-inactive {
     font-size: 1.6em;
-    color: #aaa; /* Change color to grey */
+    color: #aaa;
+    /* Change color to grey */
     margin-right: 0.5em;
     color: red;
 }
@@ -980,23 +1083,28 @@ HERO SECTION // GENERAL
 @media (max-width: 768px) {
     .access-feature-grid {
         grid-template-columns: repeat(1, minmax(0, 1fr));
-        padding-bottom: 2em; 
+        padding-bottom: 2em;
     }
 
-    .card-icon, .card-icon-full {
-        font-size: 2em; 
+    .card-icon,
+    .card-icon-full {
+        font-size: 2em;
     }
 
     .card-title {
-        font-size: 1.6em; 
+        font-size: 1.6em;
     }
 
     .relative {
-        width: 100%; 
-        height: auto;  /* Allow the height to adjust to the content */
-        min-height: 400px; /* Maintain a minimum height for consistency */
-        padding: 2em 1em; /* Add some top/bottom and left/right padding */
-        overflow: visible; /* Change the overflow property */
+        width: 100%;
+        height: auto;
+        /* Allow the height to adjust to the content */
+        min-height: 400px;
+        /* Maintain a minimum height for consistency */
+        padding: 2em 1em;
+        /* Add some top/bottom and left/right padding */
+        overflow: visible;
+        /* Change the overflow property */
         margin-bottom: 2em;
     }
 
@@ -1005,7 +1113,8 @@ HERO SECTION // GENERAL
         line-height: 1.5;
     }
 
-    .feature-active, .feature-inactive {
+    .feature-active,
+    .feature-inactive {
         font-size: 1.2em;
     }
 }
@@ -1014,6 +1123,7 @@ HERO SECTION // GENERAL
     0% {
         box-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
     }
+
     100% {
         box-shadow: 0 0 20px #0f0, 0 0 30px #0f0, 0 0 40px #0f0, 0 0 50px #0f0, 0 0 75px #0f0;
     }
