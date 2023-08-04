@@ -48,6 +48,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const dropdownLinks = document.querySelectorAll('#dropdown a');
+    const dropdown = document.getElementById('dropdown');
+
+    dropdownLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            dropdown.classList.toggle('hidden');
+        });
+    });
+});
+
 function goToHome() {
     window.location.href = '/';
 };
