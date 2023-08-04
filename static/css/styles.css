@@ -359,7 +359,7 @@ HERO SECTION // GENERAL
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     /* Subtle white glow */
     text-align: left;
-    width: 540px;
+    width: 500px;
     padding: 2em;
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
     /* Add shadow to transition */
@@ -479,6 +479,12 @@ HERO SECTION // GENERAL
         bottom: auto;
         left: auto;
         transform: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .case-card {
+      width: 450px;
     }
 }
 
@@ -1118,6 +1124,37 @@ HERO SECTION // GENERAL
         font-size: 1.2em;
     }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .card-icon,
+    .card-icon-full {
+        font-size: 2.5em;
+    }
+  
+    .card-title {
+        font-size: 1.5em;
+    }
+  
+    .relative {
+        width: 75%;
+        height: auto;
+        min-height: 400px; 
+        padding: 2em 1em; 
+        overflow: visible; 
+        margin-bottom: 2em;
+    }
+  
+    .feature-item {
+        font-size: 0.8em;
+        line-height: 1.5;
+    }
+  
+    .feature-active,
+    .feature-inactive {
+        font-size: 1.2em;
+    }
+  }
+  
 
 @keyframes glow {
     0% {

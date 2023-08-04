@@ -28,14 +28,14 @@
         <button class="cursor-pointer text-lg md:text-2xl" onclick="goToHome()">
             <div class="text-white">Superdocs.AI</div>
         </button>
-        <div class="hidden md:flex gap-6 mr-4">
+        <div class="hidden lg:flex gap-6 mr-4">
             <a href="#services">Services</a>
             <a href="#about">About</a>
             <a href="#demo">Demo</a>
             <a href="#features">Features</a>
-            <a href="#">Request Full Access</a>
+            <a href="#openModal">Request Full Access</a>
         </div>
-        <button class="md:hidden" id="hamburger">
+        <button class="lg:hidden" id="hamburger">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -89,7 +89,7 @@
     </section>
 
 
-    <section class="pb-20 pt-40 text-white use-cases-section" id="about">
+    <section class="pb-20 pt-60 text-white use-cases-section" id="about">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-center custom-h2">How it Works</h2>
             <div class="timeline mt-10">
@@ -181,7 +181,8 @@
     </section>
 
     <section
-        class="flex flex-col pb-10 sm:pb-20 md:pb-30 lg:pb-40 pt-40 items-center justify-center m-auto max-w-screen-xl w-3/4 md:pb-16 lg:pb-24 xl:pb-32 2xl:pb-40" id="features">
+        class="flex flex-col pb-10 sm:pb-20 md:pb-30 lg:pb-40 pt-40 items-center justify-center m-auto max-w-screen-xl w-3/4 md:pb-16 lg:pb-24 xl:pb-32 2xl:pb-40"
+        id="features">
         <h2 class="text-4xl font-bold text-center custom-h2 pb-20">Access Features</h2>
         <div class="grid grid-cols-2 gap-10 justify-items-center w-full access-feature-grid">
             <div
@@ -280,14 +281,14 @@
                         <input type="email" name="email" placeholder="Your email" required>
                         <button type="submit" class="cta-button">Subscribe</button>
                     </form>
-                </div>                
+                </div>
             </div>
             <div class="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400">
                 <p>&copy; 2023 Superdocs.AI. All rights reserved.</p>
             </div>
         </div>
-    </footer>           
-
+    </footer>
+    
     <script src="/static/js/main.js"></script>
     <script src="/static/js/demo.js"></script>
 </body>
