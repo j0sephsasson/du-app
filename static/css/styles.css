@@ -1010,7 +1010,7 @@ HERO SECTION // GENERAL
     border-radius: 25px;
     /* rounded corners */
     text-align: center;
-    width: 85%;
+    width: 75%;
     /* thinner card */
     /* padding: 10px; */
     transition: transform 0.5s ease-in-out;
@@ -1019,7 +1019,7 @@ HERO SECTION // GENERAL
     justify-content: center;
     align-items: center;
     gap: 15px;
-    height: 530px;
+    height: 570px;
     /* adjusted height */
 }
 
