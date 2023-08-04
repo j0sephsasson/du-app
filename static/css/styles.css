@@ -19,6 +19,8 @@ body {
     box-shadow: 0px 10px 20px rgba(252, 70, 107, 0.3);
     transition: all 0.3s ease;
     text-decoration: none;
+    position: relative;
+    z-index: 2;
 }
 
 .cta-button:hover {
@@ -59,12 +61,12 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     background: radial-gradient(circle at center, #121212, #000);
+    will-change: transform, opacity;
 }
 
 .custom-h2 {
     font-size: 2em;
     letter-spacing: 0.3em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .custom-body::before {
@@ -77,6 +79,7 @@ body {
     background-size: cover;
     z-index: -1;
     filter: brightness(0.5);
+    will-change: opacity;
     animation: bgfade 20s infinite;
 }
 
@@ -84,7 +87,7 @@ body {
     font-size: 3em;
     letter-spacing: 0.3em;
     margin-bottom: 2em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    will-change: opacity;
     animation: textfade 5s infinite;
 }
 
@@ -98,11 +101,42 @@ body {
     background: linear-gradient(90deg, transparent, #fff, transparent);
     z-index: -1;
     opacity: 0.2;
+    will-change: transform;
     animation: lightscan 10s infinite;
 }
 
 .custom-h1::before {
     filter: blur(10px);
+}
+
+@keyframes lightscan {
+    0%,
+    100% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes textfade {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes bgfade {
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 /* media queries + animations */
@@ -130,7 +164,7 @@ body {
     }
 }
 
-@keyframes lightscan {
+/* @keyframes lightscan {
 
     0%,
     100% {
@@ -164,7 +198,7 @@ body {
     50% {
         opacity: 1;
     }
-}
+} */
 
 /*--------------------------------------------------------------
 # NAV
