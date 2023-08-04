@@ -6,32 +6,8 @@ import logging
 from dotenv import load_dotenv
 from datetime import datetime
 
-# Get the current date and time
-now = datetime.now()
-
-# Convert the current date and time into a string format: 'Year-Month-Day_Hour-Minute-Second'
-date_time = now.strftime("%Y-%m-%d_%H-%M-%S")
-
-# Create a filename for log file
-log_filename = f'logs/tasks_{date_time}.log'
-
-# Create a logger
-logger = logging.getLogger('tasks')
-
-# Set logger level
-logger.setLevel(logging.INFO)
-
-# Create a file handler
-handler = logging.FileHandler(log_filename)
-
-# Set a format for the messages
-formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
-
-# Set the format for the handler
-handler.setFormatter(formatter)
-
-# Add the handler to the logger
-logger.addHandler(handler)
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 
@@ -43,36 +19,36 @@ def process_upload(file_contents, filename):
         str: Response message and success indication
     """
     try:
-        logger.info(f'File "{filename}" received for uploading')
+        logging.info(f'File "{filename}" received for uploading')
 
         # Prepare the request to the lambda URL
         api_url = os.getenv('LAMBDA_URL')
         file_ext = os.path.splitext(filename)[1]
         api_url += f"?file_ext={file_ext}"
-        logger.info(f'Prepared API URL: {api_url}')
+        logging.info(f'Prepared API URL: {api_url}')
 
         file_obj = BytesIO(file_contents)
 
         # Send the request and get the response
-        logger.info('Sending request to Lambda function')
+        logging.info('Sending request to Lambda function')
         response = requests.post(api_url, files={"input_file": file_obj})
 
         # Process the response from Lambda function
         if response.status_code == 200:
             lambda_response = response.json()
-            logger.info("SUCCESS: {}".format(lambda_response["ocr_result"]))
+            logging.info("SUCCESS: {}".format(lambda_response["ocr_result"]))
             return {
                 "success": True,
                 "message": "File successfully uploaded",
                 "ocr_result": lambda_response["ocr_result"]
             }
         else:
-            logger.error("ERROR: {}".format(response.content.decode()))
+            logging.error("ERROR: {}".format(response.content.decode()))
             return {
                 "success": False,
                 "message": "Error invoking Lambda function",
                 "lambda_response": response.content.decode()
             }
     except Exception as e:
-        logger.error('Exception occurred', exc_info=True)
+        logging.error('Exception occurred', exc_info=True)
         return {"success": False, "message": "An error occurred while processing the request"}
