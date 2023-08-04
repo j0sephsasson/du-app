@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 import time
 from werkzeug.utils import secure_filename
 import os
+import sys
 import requests
 from io import BytesIO
 from dotenv import load_dotenv
@@ -22,7 +23,7 @@ now = datetime.now()
 date_time = now.strftime("%Y-%m-%d_%H-%M-%S")
 
 # Create a filename for log file
-log_filename = f'logs/app_{date_time}.log'
+log_filename = f'app_{date_time}.log'
 
 # Create a logger
 logger = logging.getLogger('app')
@@ -30,8 +31,8 @@ logger = logging.getLogger('app')
 # Set logger level
 logger.setLevel(logging.INFO)
 
-# Create a file handler
-handler = logging.FileHandler(log_filename)
+# Create a handler that writes to stderr
+handler = logging.StreamHandler(stream=sys.stderr)
 
 # Set a format for the messages
 formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
