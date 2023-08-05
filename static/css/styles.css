@@ -60,12 +60,11 @@ HERO SECTION // GENERAL
     overflow-x: hidden;
 }
 
-.custom-h2 {
-    font-size: 2em;
-    letter-spacing: 0.3em;
+.custom-hero {
+    position: relative;
 }
 
-.custom-body::before {
+.custom-hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -77,6 +76,11 @@ HERO SECTION // GENERAL
     filter: brightness(0.5);
     will-change: filter, opacity;
     animation: bgfade 20s infinite;
+}
+
+.custom-h2 {
+    font-size: 2em;
+    letter-spacing: 0.3em;
 }
 
 .custom-h1 {
