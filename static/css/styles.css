@@ -441,7 +441,7 @@ HERO SECTION // GENERAL
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .case-card {
-      width: 450px;
+        width: 450px;
     }
 }
 
@@ -522,6 +522,59 @@ HERO SECTION // GENERAL
         grid-template-columns: repeat(1, 1fr);
         margin: 40px 20px;
     }
+}
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.service-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.service-card i {
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.service-card h3 {
+    color: transparent;
+    /* Prepare for the gradient effect */
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* For Safari browser compatibility */
+    transition: color 0.3s ease;
+}
+
+.service-card p {
+    color: #fff;
+    /* Whiter color */
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+    /* Slightly larger */
+    line-height: 1.5;
+    /* Looser line height for readability */
+}
+
+.service-card p:hover {
+    color: #eee;
+    /* Slightly softer white on hover */
 }
 
 /*--------------------------------------------------------------
@@ -996,35 +1049,35 @@ HERO SECTION // GENERAL
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+
     .card-icon,
     .card-icon-full {
         font-size: 2.5em;
     }
-  
+
     .card-title {
         font-size: 1.5em;
     }
-  
+
     .relative {
         width: 75%;
         height: auto;
-        min-height: 400px; 
-        padding: 2em 1em; 
-        overflow: visible; 
+        min-height: 400px;
+        padding: 2em 1em;
+        overflow: visible;
         margin-bottom: 2em;
     }
-  
+
     .feature-item {
         font-size: 0.8em;
         line-height: 1.5;
     }
-  
+
     .feature-active,
     .feature-inactive {
         font-size: 1.2em;
     }
-  }
-  
+}
 
 @keyframes glow {
     0% {
