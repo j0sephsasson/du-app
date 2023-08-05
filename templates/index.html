@@ -69,30 +69,30 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-center custom-h2">Document Understanding Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-10">
-                <div class="service-card">
+                <div class="transform transition-transform duration-300 bg-gray-800 bg-opacity-10 hover:shadow-lg rounded-lg p-5 text-center hover:-translate-y-2">
                     <i class="fas fa-file-alt fa-3x"></i>
-                    <h3 class="text-2xl font-bold mt-4">Data Extraction</h3>
-                    <p class="mt-2">Advanced algorithms help extract valuable information from complex structured and
+                    <h3 class="text-2xl font-bold mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">Data Extraction</h3>
+                    <p class="mt-2 text-xl leading-7 transition-colors duration-300 hover:text-gray-200">Advanced algorithms help extract valuable information from complex structured and
                         unstructured data.</p>
                 </div>
-                <div class="service-card">
+                <div class="transform transition-transform duration-300 bg-gray-800 bg-opacity-10 hover:shadow-lg rounded-lg p-5 text-center hover:-translate-y-2">
                     <i class="fas fa-layer-group fa-3x"></i>
-                    <h3 class="text-2xl font-bold mt-4">Document Pipelines</h3>
-                    <p class="mt-2">Solutions to build comprehensive document processing pipelines, enabling seamless
+                    <h3 class="text-2xl font-bold mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">Document Pipelines</h3>
+                    <p class="mt-2 text-xl leading-7 transition-colors duration-300 hover:text-gray-200">Solutions to build comprehensive document processing pipelines, enabling seamless
                         data flow.</p>
                 </div>
-                <div class="service-card">
+                <div class="transform transition-transform duration-300 bg-gray-800 bg-opacity-10 hover:shadow-lg rounded-lg p-5 text-center hover:-translate-y-2">
                     <i class="fas fa-cogs fa-3x"></i>
-                    <h3 class="text-2xl font-bold mt-4">Fully Automated</h3>
-                    <p class="mt-2">Leverage AI-powered solutions for automatic understanding and interpretation of your
+                    <h3 class="text-2xl font-bold mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">Fully Automated</h3>
+                    <p class="mt-2 text-xl leading-7 transition-colors duration-300 hover:text-gray-200">Leverage AI-powered solutions for automatic understanding and interpretation of your
                         documents.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </section>    
 
 
-    <section class="pb-20 pt-60 text-white use-cases-section" id="about">
+    <section class="pb-20 pt-40 text-white use-cases-section" id="about">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold text-center custom-h2">How it Works</h2>
             <div class="timeline mt-10">
@@ -149,7 +149,7 @@
         </div>
     </section>
 
-    <section class="pb-20 pt-60">
+    <section class="pb-10 pt-40">
         <h2 class="text-4xl font-bold text-center custom-h2">Use Cases</h2>
         <div class="document-understanding-use-case-section">
             <div class="document-understanding-case-card">
@@ -219,7 +219,7 @@
     </section>
 
 
-    <section class="demo-section pb-40 pt-40" id="demo">
+    <section class="demo-section pb-40 pt-20" id="demo">
         <h2 class="text-4xl font-bold text-center custom-h2">Interactive Demo</h2>
         <h2 class="demo-subtitle">Try it out now for free and experience the ease of use</h2>
         <a href="#" class="cta-button full-access">Request Full Access</a>
@@ -260,29 +260,29 @@
     </section>
 
 
-    <footer class="footer text-white pb-20 pt-40">
+    <footer class="text-white py-20">
         <div class="container mx-auto px-4">
-            <div class="footer-container grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="space-y-4 mb-10 md:mb-0">
                     <a class="cursor-pointer" href="/">
                         <h3 class="text-2xl font-bold tracking-tighter">Superdocs.AI</h3>
                     </a>
-                    <p class="tagline">Powerful AI solutions for the modern era</p>
+                    <p class="text-gray-400 text-lg">Powerful AI solutions for the modern era</p>
                 </div>
-                <nav class="footer-links">
+                <nav class="mb-10 md:mb-0">
                     <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/" class="footer-link">Home</a></li>
-                        <li><a href="#features" class="footer-link">Features</a></li>
-                        <li><a href="#about" class="footer-link">About</a></li>
-                        <li><a href="#services" class="footer-link">Services</a></li>
+                    <ul class="space-y-4">
+                        <li><a href="/" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#features" class="hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors duration-300">Services</a></li>
                     </ul>
                 </nav>
-                <div class="footer-newsletter">
+                <div>
                     <h3 class="text-xl font-semibold mb-4">Stay in the loop</h3>
-                    <form action="/subscribe" method="post" class="newsletter-form">
-                        <input type="email" name="email" placeholder="Your email" required>
-                        <button type="submit" class="cta-button">Subscribe</button>
+                    <form action="/subscribe" method="post" class="flex flex-col">
+                        <input type="email" name="email" placeholder="Your email" class="mb-2 p-2 bg-transparent border border-gray-400 w-3/4 mx-auto rounded text-gray-400 required">
+                        <button type="submit" class="cta-button w-3/4 mx-auto">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -290,7 +290,7 @@
                 <p>&copy; 2023 Superdocs.AI. All rights reserved.</p>
             </div>
         </div>
-    </footer>
+    </footer>    
     
     <script src="/static/js/main.js"></script>
     <script src="/static/js/demo.js"></script>

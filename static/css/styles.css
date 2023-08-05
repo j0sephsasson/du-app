@@ -174,7 +174,7 @@ HERO SECTION // GENERAL
     justify-content: space-between;
     align-items: center;
     border: 2px solid #fff;
-    z-index: 2;
+    z-index: 3;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
@@ -244,59 +244,6 @@ HERO SECTION // GENERAL
     position: absolute;
     right: 1em;
     top: 1em;
-}
-
-/*--------------------------------------------------------------
-# Services
---------------------------------------------------------------*/
-.service-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    padding: 20px;
-    text-align: center;
-    z-index: 2;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
-.service-card i {
-    color: transparent;
-    /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    /* For Safari browser compatibility */
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.service-card h3 {
-    color: transparent;
-    /* Prepare for the gradient effect */
-    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    /* For Safari browser compatibility */
-    transition: color 0.3s ease;
-}
-
-.service-card p {
-    color: #fff;
-    /* Whiter color */
-    transition: color 0.3s ease;
-    font-size: 1.2rem;
-    /* Slightly larger */
-    line-height: 1.5;
-    /* Looser line height for readability */
-}
-
-.service-card p:hover {
-    color: #eee;
-    /* Slightly softer white on hover */
 }
 
 /*--------------------------------------------------------------
@@ -910,89 +857,6 @@ HERO SECTION // GENERAL
 
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/*--------------------------------------------------------------
-# FOOTER
---------------------------------------------------------------*/
-.footer {
-    padding: 60px 80px;
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 60px;
-    justify-items: center;
-}
-
-.footer a {
-    color: rgba(255, 255, 255, 0.6);
-    transition: color 0.3s ease;
-}
-
-.footer a:hover {
-    color: #fff;
-}
-
-.footer h3 {
-    margin-bottom: 20px;
-    color: #fff;
-}
-
-.footer .tagline {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 16px;
-}
-
-.footer-newsletter .newsletter-form {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.footer-newsletter input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    color: rgba(255, 255, 255, 0.6);
-    background-color: transparent;
-    margin-bottom: 10px;
-}
-
-.footer-newsletter button {
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: none;
-    background-color: #ff7a59;
-    color: #fff;
-    cursor: pointer;
-}
-
-.footer-newsletter button:hover {
-    background-color: #ff884d;
-}
-
-/* media queries */
-@media (max-width: 767px) {
-    .footer {
-        padding: 60px;
-        margin-bottom: 50px;
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-
-    .footer a {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .footer-newsletter form {
-        display: flex;
-        flex-direction: column;
     }
 }
 
