@@ -66,9 +66,10 @@ def lambda_handler(event, context):
     ocr_strings = ocr(full_path)
 
     if ocr_strings:
+        final = ' '.join(ocr_strings)
 
         response_body = {
-            'ocr_result': ocr_strings
+            'ocr_result': final
         }
 
         return {
