@@ -38,9 +38,12 @@ def extract_data(text:str, questions:List[str]) -> str:
     return result_string
 
 def lambda_handler(event, context):
-    # Assuming the payload will have 'text' and 'questions' as the parameters.
+    # Extract text and questions from the queryStringParameters.
     text = event["queryStringParameters"]['text']
-    questions = event["queryStringParameters"]['questions']
+    questions_string = event["queryStringParameters"]['questions']
+    
+    # Convert questions string to list.
+    questions = questions_string.split(',')
     
     result = extract_data(text, questions)
     
