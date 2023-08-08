@@ -28,6 +28,16 @@ app = Flask(__name__)
 q = Queue(connection=r)
 
 def process_result_string(result_string, fields):
+    """
+    Process the result string to combine it with the corresponding fields.
+    
+    Args:
+        result_string (str): The result string containing answers separated by '---------------'.
+        fields (list): A list of field names.
+        
+    Returns:
+        str: A formatted string with fields combined with their respective answers.
+    """
     # Split the string using the separator and strip white spaces
     answers = [answer.strip() for answer in result_string.split("---------------") if answer.strip()]
 
@@ -35,6 +45,7 @@ def process_result_string(result_string, fields):
     combined = [f"{field}: {answer}" for field, answer in zip(fields, answers)]
     
     return "\n".join(combined)
+
 
 @app.route('/')
 def index():
