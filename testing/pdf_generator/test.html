@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+</head>
+
+<style>
+    #invoice {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        border: 1px solid #ccc;
+        width: 80%;
+        margin: auto;
+    }
+
+    #company-header,
+    #customer {
+        color: blue;
+    }
+
+    #invoice-details {
+        float: right;
+        margin-bottom: 20px;
+    }
+
+    #customer {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
+
+    #line-items {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #line-items th,
+    #line-items td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #line-items th {
+        background-color: #f2f2f2;
+    }
+
+    #total {
+        margin-top: 10px;
+        text-align: right;
+        font-weight: bold;
+    }
+</style>
+
+
+<body>
+    <button onclick="generatePDF()">Download Invoice</button>
+    <div id="invoice">
+        <div id="company-header">
+            <div>Tesla, Inc.</div>
+            <div>3500 Deer Creek Road</div>
+            <div>Palo Alto, CA 94304</div>
+            <div>Phone: 123-456-7890</div>
+        </div>
+        <div id="invoice-details">
+            <div>Invoice Number: INV12345</div>
+            <div>Date: 08/08/2023</div>
+        </div>
+        <div id="customer">
+            <div><strong>Bill To:</strong> Joe</div>
+            <div>123 Martian Way</div>
+            <div>Olympus Mons, Mars</div>
+        </div>
+        <table id="line-items">
+            <tr>
+                <th>Part Number</th>
+                <th>Item</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>TES-001</td>
+                <td>Model S Battery Pack</td>
+                <td>100 kWh Battery Pack for Model S</td>
+                <td>1</td>
+                <td>$20,000</td>
+                <td>$20,000</td>
+            </tr>
+            <tr>
+                <td>TES-002</td>
+                <td>Model 3 Wheels</td>
+                <td>Set of 4 Aero Wheels for Model 3</td>
+                <td>2</td>
+                <td>$1,500</td>
+                <td>$3,000</td>
+            </tr>
+            <tr>
+                <td>TES-003</td>
+                <td>Model X Falcon Doors</td>
+                <td>Pair of Falcon Wing Doors for Model X</td>
+                <td>1</td>
+                <td>$5,000</td>
+                <td>$5,000</td>
+            </tr>
+            <tr>
+                <td>TES-004</td>
+                <td>Supercharger Access</td>
+                <td>One-year Supercharger Network Access</td>
+                <td>1</td>
+                <td>$2,000</td>
+                <td>$2,000</td>
+            </tr>
+        </table>
+        <div id="total">
+            <div>Total: $30,000</div>
+        </div>
+    </div>
+
+
+    <script>
+        function generatePDF() {
+            var element = document.getElementById('invoice');
+            var opt = {
+                margin: 10,
+                filename: 'invoice.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
+            };
+
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
+
+</body>
+
+</html>
