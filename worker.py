@@ -2,6 +2,9 @@ import os
 from rq import Queue, Worker, Connection
 import redis
 from urllib.parse import urlparse
+from dotenv import load_dotenv
+
+load_dotenv()
 
 listen = ['high', 'default', 'low']
 
