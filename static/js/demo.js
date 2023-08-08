@@ -93,7 +93,7 @@ async function processForm() {
     $("#loading").show();
 
     // Flash messages
-    let messages = ['Waking up your AI model...', 'Uploading your document...', 'Running AI algorithms...', 'Extracting data...'];
+    let messages = ['This process can take up to two and a half minutes...', 'Uploading your document...', 'Waking up your AI model...', 'Running AI algorithms...', 'Extracting data...'];
     let messageIndex = 0;
     let timeouts = [];
     let flashMessage = document.querySelector('.flash-message');
@@ -103,17 +103,17 @@ async function processForm() {
         flashMessage.textContent = messages[messageIndex];
         flashMessage.classList.add('active');
 
-        // Schedule the message to be hidden after 8 seconds
+        // Schedule the message to be hidden after 16 seconds
         timeouts.push(setTimeout(() => {
             flashMessage.classList.remove('active');
 
             // Increase the index or stop if the end is reached
             messageIndex++;
             if (messageIndex < messages.length) {
-                // Schedule the next message to be shown in 1 seconds
-                timeouts.push(setTimeout(showMessage, 1000));
+                // Schedule the next message to be shown in 1.5 seconds
+                timeouts.push(setTimeout(showMessage, 1500));
             }
-        }, 8000));
+        }, 16000));
     }
 
     function stopShowingMessages() {
@@ -231,8 +231,8 @@ function showResult(result) {
     $("#uploadContainer, .demo-fields").fadeOut('slow', function() {
         $("#loading").hide();
         if (result.success) {
-            if ('ocr_result' in result) {
-                $("#resultText").text(result.ocr_result.join('\n'));
+            if ('final_result' in result) {
+                $("#resultText").text(result.final_result);
             } else {
                 $("#resultText").text("Results are not available");
             }
