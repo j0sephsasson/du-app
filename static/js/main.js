@@ -70,16 +70,30 @@ var openModalBtns = document.getElementsByClassName('openModalBtn');
 // Add a click event listener to each button
 for (var i = 0; i < openModalBtns.length; i++) {
     openModalBtns[i].addEventListener('click', function (e) {
-        e.preventDefault();
-        document.getElementById('modal').style.display = 'block';
+        openModal(e);
+    });
+    openModalBtns[i].addEventListener('touchstart', function (e) {
+        openModal(e);
     });
 }
 
+function openModal(e) {
+    e.preventDefault();
+    document.getElementById('modal').style.display = 'block';
+}
+
 window.addEventListener('click', function (e) {
+    closeModal(e);
+});
+window.addEventListener('touchstart', function (e) {
+    closeModal(e);
+});
+
+function closeModal(e) {
     if (e.target.id === 'modal') {
         document.getElementById('modal').style.display = 'none';
     }
-});
+}
 
 document.getElementById('accessForm').addEventListener('submit', function(event) {
     event.preventDefault();
