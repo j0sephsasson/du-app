@@ -22,6 +22,7 @@ from flask_mail import Message
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
+## need to push again heroku was down and last push failed
 load_dotenv()
 
 app = Flask(__name__)
