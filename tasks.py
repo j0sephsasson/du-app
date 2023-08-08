@@ -34,6 +34,7 @@ def call_llm(text, fields):
         return {
             "success": True,
             "message": "Data successfully extracted",
+            "fields": fields,
             "final_result": response.text
         }
 

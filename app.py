@@ -27,6 +27,15 @@ app = Flask(__name__)
 # Initialize RQ
 q = Queue(connection=r)
 
+def process_result_string(result_string, fields):
+    # Split the string using the separator and strip white spaces
+    answers = [answer.strip() for answer in result_string.split("---------------") if answer.strip()]
+
+    # Combine fields and answers
+    combined = [f"{field}: {answer}" for field, answer in zip(fields, answers)]
+    
+    return "\n".join(combined)
+
 @app.route('/')
 def index():
     """
@@ -131,7 +140,12 @@ def job_result(job_id):
 
             # Parse the 'final_result' as a JSON object
             parsed_result = json.loads(job.result.get("final_result"))
-            final = parsed_result.get("result")
+            result_string = parsed_result.get("result")
+
+            # Convert the comma-separated fields into a list
+            fields_list = job.result.get("fields").split(", ")
+            
+            final = process_result_string(result_string=result_string, fields=fields_list)
 
             logging.info(f'Data: {final}')
             return {"success":True, "final_result": final}

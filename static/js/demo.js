@@ -232,7 +232,8 @@ function showResult(result) {
         $("#loading").hide();
         if (result.success) {
             if ('final_result' in result) {
-                $("#resultText").text(result.final_result);
+                let formattedResult = result.final_result.replace(/\n/g, '<br>');  // Convert newlines to <br> tags
+                $("#resultText").html(formattedResult);
             } else {
                 $("#resultText").text("Results are not available");
             }
