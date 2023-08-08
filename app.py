@@ -16,6 +16,8 @@ from worker import r
 from rq.job import Job
 from tasks import process_upload
 import json
+from extensions import mail
+from flask_mail import Message
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -23,6 +25,24 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 app = Flask(__name__)
+
+# Configure session
+app.secret_key = os.getenv('FLASK_SECRET_KEY')
+
+app.config['SESSION_PERMANENT'] = False  # Session data is not permanent
+app.config['SESSION_USE_SIGNER'] = True  # Sign the session cookie
+
+# Configure Mail
+app.config['MAIL_SERVER'] = 'mail.privateemail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
+
+# init flask_mail so we can use it in our app
+mail.init_app(app)
 
 # Initialize RQ
 q = Queue(connection=r)
@@ -166,6 +186,24 @@ def job_result(job_id):
     else:
         logging.info(f'Job {job_id} is not finished yet')
         return {"success": False, "message": "Job not finished"}
+    
+@app.route('/send_email', methods=['POST'])
+def send_email():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        use_case = request.form['use_case']
+
+        # Create message
+        msg = Message('New Form Submission', recipients=['sassonjoe66@gmail.com'])
+        msg.body = f'Name: {name}\nEmail: {email}\nUse Case: {use_case}'
+
+        # Send email
+        mail.send(msg)
+
+        return jsonify(message='Email sent successfully!')
+
+    return jsonify(error='Method not allowed'), 405
 
 
 if __name__ == '__main__':

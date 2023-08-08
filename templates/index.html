@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Harness the power of advanced OCR and LLMs to automatically understand and process your documents in the cloud. Introducing Superdocs.AI – the future of document management.">
-    <meta name="keywords" content="OCR, LLM, document understanding, cloud processing, automatic document processing, cloud OCR, language models, document management">
+    <meta name="description"
+        content="Harness the power of advanced OCR and LLMs to automatically understand and process your documents in the cloud. Introducing Superdocs.AI – the future of document management.">
+    <meta name="keywords"
+        content="OCR, LLM, document understanding, cloud processing, automatic document processing, cloud OCR, language models, document management">
     <meta name="author" content="Superdocs.AI">
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
@@ -41,7 +43,7 @@
             <a href="#about">About</a>
             <a href="#demo">Demo</a>
             <a href="#features">Features</a>
-            <a href="#openModal">Request Full Access</a>
+            <a href="#" class="openModalBtn">Request Full Access</a>
         </div>
         <button class="lg:hidden" id="hamburger">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -61,13 +63,13 @@
             <a href="#about">About</a>
             <a href="#demo">Demo</a>
             <a href="#features">Features</a>
-            <a href="#">Request Full Access</a>
+            <a href="#" class="openModalBtn">Request Full Access</a>
         </div>
     </nav>
 
     <section class="h-screen flex items-center justify-center flex-col custom-hero">
         <h1 class="text-6xl uppercase tracking-wide text-shadow custom-h1">Welcome to Superdocs.AI</h1>
-        <a href="#" class="cta-button cursor-pointer">Request Full Access</a>
+        <a href="#" class="cta-button cursor-pointer openModalBtn">Request Full Access</a>
     </section>
 
     <section class="py-20 text-white" id="services">
@@ -234,7 +236,7 @@
     <section class="demo-section pb-40 pt-20" id="demo">
         <h2 class="text-4xl font-bold text-center custom-h2">Interactive Demo</h2>
         <h2 class="demo-subtitle">Try it out now for free and experience the ease of use</h2>
-        <a href="#" class="cta-button full-access">Request Full Access</a>
+        <a href="#" class="cta-button full-access openModalBtn">Request Full Access</a>
         <div class="interactive-demo-card">
             <div class="demo-upload" id="uploadContainer">
                 <div class="upload-content">
@@ -264,7 +266,7 @@
                 <div class="result-container">
                     <p id="resultText">Results displayed here</p>
                 </div>
-            </div>            
+            </div>
             <div id="loading" class="spinner"></div>
             <div class="flash-message"></div>
             <div class="submitContainer">
@@ -309,6 +311,39 @@
             </div>
         </div>
     </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="left">
+                <div class="column">
+                    <h3>Free Demo</h3>
+                    <ul class="features-list">
+                        <li><span class="check-icon">&#10004;</span> No signup</li>
+                        <li><span class="check-icon">&#10004;</span> 100% free</li>
+                        <li><span class="x-icon">&#10006;</span> No API access</li>
+                        <li><span class="x-icon">&#10006;</span> No support</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3>Full Access</h3>
+                    <ul class="features-list">
+                        <li><span class="check-icon">&#10004;</span> API Access</li>
+                        <li><span class="check-icon">&#10004;</span> Custom Integrations</li>
+                        <li><span class="check-icon">&#10004;</span> Technical Support</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right">
+                <h2>Request Access</h2>
+                <form id="accessForm">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="use_case" placeholder="Use Case" required>
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+            </div>            
+        </div>
+    </div>
 
     <script src="/static/js/main.js"></script>
     <script src="/static/js/demo.js"></script>

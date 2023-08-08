@@ -62,3 +62,56 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function goToHome() {
     window.location.href = '/';
 };
+
+// Modal form
+// Get all elements with the 'openModalBtn' class
+var openModalBtns = document.getElementsByClassName('openModalBtn');
+
+// Add a click event listener to each button
+for (var i = 0; i < openModalBtns.length; i++) {
+    openModalBtns[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('modal').style.display = 'block';
+    });
+}
+
+window.addEventListener('click', function (e) {
+    if (e.target.id === 'modal') {
+        document.getElementById('modal').style.display = 'none';
+    }
+});
+
+document.getElementById('accessForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Hide the submit button and show the spinner
+    const submitButton = document.querySelector('.submit-button');
+    submitButton.style.display = 'none';
+
+    const formData = new FormData(event.target);
+    fetch('/send_email', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Clear the form fields
+        event.target.reset();
+
+        // After getting the response, show the submit button and hide the spinner
+        submitButton.style.display = 'inline-block';
+
+    })
+    .catch(error => {
+        // Show the submit button and hide the spinner
+        submitButton.style.display = 'inline-block';
+
+        console.error('There was an error!', error);
+        alert(error);
+    });
+});
