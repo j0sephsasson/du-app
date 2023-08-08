@@ -15,6 +15,7 @@ from rq.job import NoSuchJobError
 from worker import r
 from rq.job import Job
 from tasks import process_upload
+import json
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -54,7 +55,11 @@ def upload():
 
         file = request.files['file']
         file_contents = file.read()
-        fields = request.form['fields']
+
+        fields_str = request.form['fields']
+        fields = json.loads(fields_str) # decode the JSON string to a list
+        fields = ", ".join(fields) # join into comma separated string
+        print(fields)
 
         if file.filename == '':
             logging.error('No file selected for uploading')
@@ -64,7 +69,7 @@ def upload():
             filename = secure_filename(file.filename)
 
             # Offload the file processing to the RQ worker
-            job = q.enqueue(process_upload, file_contents, filename)
+            job = q.enqueue(process_upload, file_contents, filename, fields)
             return jsonify({
                 "success": True,
                 "message": "File is being processed",
@@ -123,8 +128,13 @@ def job_result(job_id):
     if job.is_finished:
         if job.result.get("success"):
             logging.info(f'Successfully retrieved result for job id: {job_id}')
-            logging.info(f'Data: {job.result.get("ocr_result")}')
-            return {"success":True, "ocr_result": job.result.get("ocr_result")}
+
+            # Parse the 'final_result' as a JSON object
+            parsed_result = json.loads(job.result.get("final_result"))
+            final = parsed_result.get("result")
+
+            logging.info(f'Data: {final}')
+            return {"success":True, "final_result": final}
         else:
             logging.error(f'Error during processing for job id: {job_id}, Message: {job.result.get("message")}')
             return {"success": False, "message": "Error during processing", "error": job.result.get("message")}
