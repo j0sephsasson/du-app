@@ -316,7 +316,7 @@ HERO SECTION // GENERAL
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     /* Subtle white glow */
     text-align: left;
-    width: 500px;
+    width: 420px;
     padding: 2em;
     transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
     /* Add shadow to transition */
