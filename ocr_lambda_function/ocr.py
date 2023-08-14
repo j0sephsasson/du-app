@@ -1,37 +1,24 @@
-import logging
 import base64
 import os
 from datetime import datetime
-import traceback
-
-try:
-    from paddleocr import PaddleOCR
-except Exception as e:
-    logging.error("Exception occurred during import: %s", str(e))
-    logging.error(str(traceback.format_exc()))
+from paddleocr import PaddleOCR
 import json
 from io import BytesIO
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
+model = None
+try:
+    model = PaddleOCR(use_angle_cls=True, use_gpu=False)
+except Exception as e:
+    print("Failed to initialize PaddleOCR: %s", str(e))
 
 def ocr(path):
-    # Initialize the model
-    try:
-        model = PaddleOCR(use_angle_cls=True, use_gpu=False)
-    except Exception as e:
-        logging.info("Exception occurred: %s", str(e))
-        logging.info(str(traceback.format_exc()))
+    if not model:
+        print("PaddleOCR model is not initialized.")
         return None
-
-    
-    # Perform OCR
-    logging.info("DOING OCR")
 
     result = model.ocr(path, cls=True)
     ocr_strings = []  # Initialize an empty list
     
-    logging.info("LOOPING OVER RESULT")
     for idx in range(len(result)):
         res = result[idx]
         for line in res:
@@ -40,12 +27,9 @@ def ocr(path):
     return ocr_strings
 
 def lambda_handler(event, context):
-    logging.info("lambda function invoked")
-
     # Use the file extension in the input_key
     file_ext = event["queryStringParameters"]["file_ext"]
     
-
     # Create the filename and the directories
     input_filename = f'{datetime.now().strftime("%Y%m%d%H%M%S%f")}{file_ext}'
     input_directory = 'sourcedata'
@@ -60,8 +44,6 @@ def lambda_handler(event, context):
     # Write your file to the leaf level
     with open(full_path, 'wb') as f:
         f.write(input_content.read())
-
-    logging.info("file saved...performing OCR next")
 
     ocr_strings = ocr(full_path)
 
