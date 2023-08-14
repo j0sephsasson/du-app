@@ -110,7 +110,7 @@ def upload():
             filename = secure_filename(file.filename)
 
             # Offload the file processing to the RQ worker
-            job = q.enqueue(process_upload, file_contents, filename, fields)
+            job = q.enqueue(process_upload, file_contents, filename, fields, timeout=300)
             return jsonify({
                 "success": True,
                 "message": "File is being processed",
