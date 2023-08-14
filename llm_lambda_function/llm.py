@@ -38,17 +38,23 @@ def extract_data(text:str, questions:List[str]) -> str:
     return result_string
 
 def lambda_handler(event, context):
-    # Extract text and questions from the queryStringParameters.
-    text = event["queryStringParameters"]['text']
-    questions_string = event["queryStringParameters"]['questions']
+    # Extract the body of the request which contains the text and questions.
+    body = json.loads(event["body"])
     
-    # Convert questions string to list.
-    questions = questions_string.split(',')
+    text = body['text']
+    questions_string = body['questions']
+    
+    # Convert questions string to list if it's a comma-separated string.
+    # However, since you're sending a JSON payload, you can send questions as a list from the client-side.
+    questions = questions_string if isinstance(questions_string, list) else questions_string.split(',')
     
     result = extract_data(text, questions)
     
     # Return the result.
     return {
         'statusCode': 200,
-        'body': json.dumps({'result': result})
+        'body': json.dumps({'result': result}),
+        'headers': {
+            'Content-Type': 'application/json'
+        }
     }

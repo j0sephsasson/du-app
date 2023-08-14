@@ -3,7 +3,7 @@ import requests
 import base64
 from urllib.parse import quote
 from io import BytesIO
-import logging
+import logging, json
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -22,13 +22,18 @@ def call_llm(text, fields):
     try:
         api_url = str(os.getenv('LAMBDA_URL_LLM'))
 
-        # Properly encode parameters
-        encoded_text = quote(text)
-        encoded_fields = quote(fields)
+        # Prepare payload to be sent in the body
+        payload = {
+            'text': text,
+            'questions': fields
+        }
 
-        api_url += f"?text={encoded_text}&questions={encoded_fields}"
+        headers = {
+            'Content-Type': 'application/json'
+        }
 
-        response = requests.post(api_url)
+        # Use data parameter to send payload as json
+        response = requests.post(api_url, data=json.dumps(payload), headers=headers)
         response.raise_for_status()  # This will raise an HTTPError if the HTTP request returned an unsuccessful status code
 
         return {
