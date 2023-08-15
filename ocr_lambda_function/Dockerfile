@@ -31,6 +31,8 @@ RUN pip3 install urllib3==1.26.5
 # Run PaddleOCR to download models
 RUN python -c "from paddleocr import PaddleOCR; PaddleOCR()"
 
+RUN mkdir -p /app/models && mv /root/.paddleocr /app/models/.paddleocr
+
 # Copy function code
 COPY ocr.py .
 

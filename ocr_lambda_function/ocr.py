@@ -7,7 +7,16 @@ from io import BytesIO
 
 model = None
 try:
-    model = PaddleOCR(use_angle_cls=True, use_gpu=False)
+    # set model paths
+    det_model_path = "/app/models/.paddleocr/whl/det/ch/ch_PP-OCRv3_det_infer"
+    rec_model_path = "/app/models/.paddleocr/whl/rec/ch/ch_PP-OCRv3_rec_infer"
+    cls_model_path = "/app/models/.paddleocr/whl/cls/ch_ppocr_mobile_v2.0_cls_infer"
+
+    # init model
+    model = PaddleOCR(use_angle_cls=True, use_gpu=False, 
+                      det_model_dir=det_model_path, 
+                      rec_model_dir=rec_model_path,
+                      cls_model_dir=cls_model_path)
 except Exception as e:
     print("Failed to initialize PaddleOCR: %s", str(e))
 
