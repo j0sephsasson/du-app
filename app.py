@@ -123,7 +123,13 @@ def upload():
 @app.route('/job/status/<job_id>', methods=['GET'])
 def job_status(job_id):
     """
-    Check the status of a job
+    Check the status of a job by its job_id.
+    
+    Args:
+    - job_id (str): The ID of the job.
+
+    Returns:
+    - dict: The status of the job.
     """
     try:
         logging.info(f'Fetching job with id: {job_id}')
@@ -154,7 +160,13 @@ def job_status(job_id):
 @app.route('/job/result/<job_id>', methods=['GET'])
 def job_result(job_id):
     """
-    Get the result of a job
+    Get the result of a job by its job_id.
+    
+    Args:
+    - job_id (str): The ID of the job.
+
+    Returns:
+    - dict: The result of the job or an error message.
     """
     try:
         logging.info(f'Fetching result for job id: {job_id}')
@@ -190,6 +202,13 @@ def job_result(job_id):
     
 @app.route('/send_email', methods=['POST'])
 def send_email():
+    """
+    Endpoint to send an email.
+
+    If the request method is POST, it reads the 'name', 'email', and 'use_case' from the form,
+    creates a message, sends it, and then returns a success message.
+    Otherwise, it returns an error indicating the method is not allowed.
+    """
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -205,7 +224,6 @@ def send_email():
         return jsonify(message='Email sent successfully!')
 
     return jsonify(error='Method not allowed'), 405
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
