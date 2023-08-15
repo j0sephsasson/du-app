@@ -1,51 +1,66 @@
-import requests, json, os
+import requests
+import json
+import os
 from io import BytesIO
-from urllib.parse import quote
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def send_to_ocr_api(file_path):
+    """
+    Send file to OCR API and return its response.
+    
+    Parameters:
+    - file_path (str): Path to the file to be processed by the OCR.
+    
+    Returns:
+    - dict: Response from the OCR API.
+    
+    Raises:
+    - ValueError: If the API URL environment variable is missing or the request fails.
+    """
     api_url = os.getenv("LAMBDA_OCR_API")
 
-    # Read the PDF file and convert its content into bytes
+    # Validate if api_url is present
+    if not api_url:
+        raise ValueError("LAMBDA_OCR_API is missing in environment variables.")
+
     with open(file_path, 'rb') as f:
         byte_content = BytesIO(f.read())
 
-    # This is a generic example to send the byte content to an API
-    # Adjust this based on the specifics of your API
-    response = requests.post(api_url, files={'input_file': byte_content})
-
-    return response.json()  # Assuming the API returns a JSON response
+    try:
+        response = requests.post(api_url, files={'input_file': byte_content})
+        response.raise_for_status()  # Will raise HTTPError if the HTTP request returned an unsuccessful status code
+        return response.json()
+    except requests.RequestException as e:
+        raise ValueError(f"API request failed: {str(e)}")
 
 def send_to_llm_api(text, fields):
+    """
+    Send text and fields to LLM API and return its response.
+    
+    Parameters:
+    - text (str): Text to be processed by the LLM API.
+    - fields (str): Fields associated with the text.
+    
+    Returns:
+    - dict: Response from the LLM API.
+    
+    Raises:
+    - ValueError: If the API URL environment variable is missing or the request fails.
+    """
     api_url = os.getenv('LAMBDA_URL_LLM')
 
-    # Prepare payload to be sent in the body
-    payload = {
-        'text': text,
-        'questions': fields
-    }
+    # Validate if api_url is present
+    if not api_url:
+        raise ValueError("LAMBDA_URL_LLM is missing in environment variables.")
 
-    headers = {
-        'Content-Type': 'application/json'
-    }
+    payload = {'text': text, 'questions': fields}
+    headers = {'Content-Type': 'application/json'}
 
-    # Use data parameter to send payload as json
-    response = requests.post(api_url, data=json.dumps(payload), headers=headers)
-
-    return response.json()
-
-
-if __name__ == '__main__':
-    file_path = '/Users/joesasson/Desktop/invoice.pdf'
-    fields = 'Total, Invoice number'
-
-    result = send_to_ocr_api(file_path)
-    ocr_result = result['ocr_result']
-
-    print('OCR SUCCESS')
-
-    final = send_to_llm_api(ocr_result, fields)
-
-    print(final)
+    try:
+        response = requests.post(api_url, data=json.dumps(payload), headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as e:
+        raise ValueError(f"API request failed: {str(e)}")
