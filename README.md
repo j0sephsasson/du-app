@@ -21,7 +21,7 @@ SuperDocs is a revolutionary DU platform, but its real magic lies beneath the su
 - Use it as an individual service or in tandem with the OCR function — your choice.
 
 ## The Modular Advantage 🧩
-Each component in SuperDocs is not just a part of a whole but a whole in itself. Thanks to the Docker containers, you can plug-and-play these services as per your project's requirements. While SuperDocs is perfect for understanding and testing these capabilities, the true potential lies in the individual power and flexibility of each microservice.
+Each component in SuperDocs is not just a part of a whole but a whole in itself. Thanks to the Docker containers, you can plug-and-play these services as per your project's requirements. While the SuperDocs Flask app is perfect for understanding and testing these capabilities, the true potential lies in the individual power and flexibility of each microservice.
 
 ## 🚀 Local Setup
 
@@ -63,7 +63,7 @@ Each component in SuperDocs is not just a part of a whole but a whole in itself.
     Here's how you can dive into the comprehensive testing:
 
     - **Direct API Interaction**:
-    - Utilize the `send_to_ocr_api(file_path)` and `send_to_llm_api(text, fields)` functions to directly interact with the APIs. Make sure the environment variables (`LAMBDA_OCR_API` and `LAMBDA_URL_LLM`) are correctly set for this purpose.
+        - Utilize the `send_to_ocr_api(file_path)` and `send_to_llm_api(text, fields)` functions to directly interact with the APIs. Make sure the environment variables (`LAMBDA_OCR_API` and `LAMBDA_URL_LLM`) are correctly set for this purpose.
 
     - **Extensive Test Scenarios**:
     Our test suite (`api_testing/tests.py`) covers a broad spectrum of scenarios, from success cases, HTTP errors, timeouts, connection issues, to even unanticipated non-JSON responses.
