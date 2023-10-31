@@ -46,7 +46,7 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 mail.init_app(app)
 
 # Initialize RQ
-q = Queue(connection=r, default_timeout=300)
+q = Queue(connection=r, default_timeout=600)
 
 def process_result_string(result_string, fields):
     """
