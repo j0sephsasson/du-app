@@ -2,6 +2,8 @@
 
 SuperDocs is a revolutionary DU platform, but its real magic lies beneath the surface. With the integration of two state-of-the-art technologies — `paddleocr` and `llama_index` — it offers not just an application, but a suite of modular, containerized microservices. Each is ready for individual deployment, catering to bespoke needs.
 
+**Notice: The application is no longer live (superdocs.tech) - but all the code and information below is still valid**
+
 ## 🌐 Architecture & Capabilities
 
 ### 1. **Flask Server (`app.py`)**
